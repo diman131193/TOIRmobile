@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2394115679
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: myassetbundle.unity3d
+      Dependencies: {}
