@@ -13,6 +13,8 @@ public class LoadState : BaseState {
     [Inject]
     private DeviceModel deviceModel;
 
+    public int ModelId { get; set; }
+
     private int time = 3;
 
     public override void Load()
@@ -24,7 +26,7 @@ public class LoadState : BaseState {
 
     IEnumerator GetAssetBundle()
     {
-        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://localhost:50442/api/values/getbundle");
+        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://localhost:50442/api/values/getbundle/" + ModelId);
         yield return www.Send();
 
         if (www.isNetworkError || www.isHttpError)
@@ -35,7 +37,7 @@ public class LoadState : BaseState {
         {
             AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(www);
             //var prefab = bundle.LoadAsset<GameObject>("Combain");
-            var prefab = bundle.LoadAsset<GameObject>("Cube");
+            var prefab = bundle.LoadAsset<GameObject>("Cube" + ModelId);
             //Instantiate(prefab);
             deviceModel.Object = prefab;
             deviceModel.Name = "New";

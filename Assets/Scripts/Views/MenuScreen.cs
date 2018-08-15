@@ -5,18 +5,25 @@ using UnityEngine.UI;
 public class MenuScreen : BaseScreen 
 {
     [SerializeField]
-    private Button _settingsButton;
+    private ScrollRect _scrollRect;
     [SerializeField]
     private Text _title;
 
-    public event Action SettingsClicked = delegate { };
+    private Button[] buttons;
+
+    public event Action<int> SettingsClicked = delegate { };
 
     void Start()
     {
-        _settingsButton.onClick.AddListener(() =>
+        buttons = _scrollRect.GetComponentsInChildren<Button>();
+        for (var i = 0; i < buttons.Length; i++)
         {
-            SettingsClicked();
-        });
+            var j = i + 1;
+            buttons[i].onClick.AddListener(() =>
+            {
+                SettingsClicked(j);
+            });
+        }
     }
 
     public void SetTitle(string title)
@@ -26,6 +33,9 @@ public class MenuScreen : BaseScreen
     }
     private void OnDestroy()
     {
-        _settingsButton.onClick.RemoveAllListeners();
+        for (var i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].onClick.RemoveAllListeners();
+        }
     }
 }

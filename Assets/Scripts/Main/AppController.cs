@@ -44,9 +44,10 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Fire<MenuSceneOpenSignal>();
     }
 
-    private void OnLoadSceneOpen()
+    private void OnLoadSceneOpen(LoadSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        loadState.ModelId = signal.id;
         _stateMachine.Load(loadState);
     }
 

@@ -14,7 +14,7 @@ public class MenuState : BaseState {
         base.Load();
         Debug.Log("ButtonClick MainSceneOpenSignal");
         menuScreen.SettingsClicked += OnSettingsClicked;
-        menuScreen.SetTitle("IT IS MENU!!!");
+        //menuScreen.SetTitle("IT IS MENU!!!");
         menuScreen.Show();
     }
     public override void Unload()
@@ -24,10 +24,10 @@ public class MenuState : BaseState {
         menuScreen.Hide();
     }
 
-    public void OnSettingsClicked()
+    public void OnSettingsClicked(int num)
     {
         Debug.Log("ButtonClick MainSceneOpenSignal");
-        signalBus.Fire<LoadSceneOpenSignal>();
+        signalBus.Fire(new LoadSceneOpenSignal() { id = num });
     }
 
 }
