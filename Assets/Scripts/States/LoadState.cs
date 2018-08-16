@@ -26,7 +26,7 @@ public class LoadState : BaseState {
 
     IEnumerator GetAssetBundle()
     {
-        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://localhost:50442/api/values/getbundle/" + ModelId);
+        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://10.10.47.201/toir/api/values/getbundle/" + ModelId);
         yield return www.Send();
 
         if (www.isNetworkError || www.isHttpError)

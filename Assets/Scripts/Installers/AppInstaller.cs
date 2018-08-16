@@ -13,7 +13,6 @@ public class AppInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Screen.orientation = ScreenOrientation.Landscape;
         InstallViews();
         InstallStates();
         InstallSignals();
