@@ -26,12 +26,13 @@ public class LoadState : BaseState {
 
     IEnumerator GetAssetBundle()
     {
-        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://10.10.47.201/toir/api/values/getbundle/" + ModelId);
-        yield return www.Send();
+        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://10.10.47.201/toir/api/values/getbundle/" + ModelId + "?device=" + Application.platform.ToString()); 
+        yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
         {
             Debug.Log(www.error);
+            signalBus.Fire<MenuSceneOpenSignal>();
         }
         else
         {
@@ -40,11 +41,12 @@ public class LoadState : BaseState {
             var prefab = bundle.LoadAsset<GameObject>("Cube" + ModelId);
             //Instantiate(prefab);
             deviceModel.Object = prefab;
-            deviceModel.Name = "New";
+            deviceModel.Name = "Cube " + ModelId;
             deviceModel.Description = "awdaawdawd";
             bundle.Unload(false);
+            signalBus.Fire<MainSceneOpenSignal>();
         }
-        signalBus.Fire<MainSceneOpenSignal>();
+        
     }
 
     private IEnumerator Timer_Elapsed()
