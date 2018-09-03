@@ -20,6 +20,7 @@ public class MainState : BaseState {
         mainScreen.SetTitle(deviceModel.Name);
         model = GameObject.Instantiate(deviceModel.Object);
         mainScreen.SettingsClicked += OnSettingsClicked;
+        mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.Show();
     }
     public override void Unload()

@@ -17,7 +17,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
 
     Vector2 joystickPosition = Vector2.zero;
-    private Camera cam = new Camera();
+    [SerializeField]
+    private Camera cam;
 
     void Start()
     {
