@@ -25,6 +25,8 @@ public class AppInstaller : MonoInstaller
         Container.Bind<MenuState>().AsSingle();
         Container.Bind<MainState>().AsSingle();
         Container.Bind<LoadState>().AsSingle();
+        Container.Bind<Screen1State>().AsSingle();
+        Container.Bind<Screen2State>().AsSingle();
     }
 
     private void InstallViews()
@@ -32,6 +34,8 @@ public class AppInstaller : MonoInstaller
         Container.Bind<MenuScreen>().FromInstance(_uiManager.MenuScreen).AsSingle();
         Container.Bind<MainScreen>().FromInstance(_uiManager.MainScreen).AsSingle();
         Container.Bind<LoadScreen>().FromInstance(_uiManager.LoadScreen).AsSingle();
+        Container.Bind<Screen1Screen>().FromInstance(_uiManager.Screen1Screen).AsSingle();
+        Container.Bind<Screen2Screen>().FromInstance(_uiManager.Screen2Screen).AsSingle();
     }
 
     void InstallMisc()
@@ -47,6 +51,8 @@ public class AppInstaller : MonoInstaller
         Container.DeclareSignal<MenuSceneOpenSignal>();
         Container.DeclareSignal<MainSceneOpenSignal>();
         Container.DeclareSignal<LoadSceneOpenSignal>();
+        Container.DeclareSignal<Screen1SceneOpenSignal>();
+        Container.DeclareSignal<Screen2SceneOpenSignal>();
     }
 
     void InstallExecutionOrder()

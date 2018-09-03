@@ -13,4 +13,8 @@ public abstract class BaseScreen : MonoBehaviour {
 	public virtual void Show () {
         gameObject.SetActive(true);
 	}
+
+    public virtual void RenderScreenContent()
+    {
+    }
 }

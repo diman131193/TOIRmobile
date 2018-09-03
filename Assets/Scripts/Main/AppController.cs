@@ -23,6 +23,12 @@ public class AppController : IInitializable, ITickable, IDisposable
     [Inject]
     private LoadState loadState;
 
+    [Inject]
+    private Screen1State screen1State;
+
+    [Inject]
+    private Screen2State screen2State;
+
     GameStates _state = GameStates.WaitingToStart;
 
     public AppController(SignalBus signalBus, StateMachine stateMachine)
@@ -41,7 +47,21 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Subscribe<MenuSceneOpenSignal>(OnMenuSceneOpen);
         _signalBus.Subscribe<MainSceneOpenSignal>(OnMainSceneOpen);
         _signalBus.Subscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
-        _signalBus.Fire<MenuSceneOpenSignal>();
+        _signalBus.Subscribe<Screen1SceneOpenSignal>(OnScreen1SceneOpen);
+        _signalBus.Subscribe<Screen2SceneOpenSignal>(OnScreen2SceneOpen);
+        _signalBus.Fire<Screen1SceneOpenSignal>();
+    }
+
+    private void OnScreen1SceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(screen1State);
+    }
+
+    private void OnScreen2SceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(screen2State);
     }
 
     private void OnLoadSceneOpen(LoadSceneOpenSignal signal)
@@ -68,6 +88,8 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Unsubscribe<MenuSceneOpenSignal>(OnMenuSceneOpen);
         _signalBus.Unsubscribe<MainSceneOpenSignal>(OnMainSceneOpen);
         _signalBus.Unsubscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
+        _signalBus.Unsubscribe<Screen1SceneOpenSignal>(OnScreen1SceneOpen);
+        _signalBus.Unsubscribe<Screen2SceneOpenSignal>(OnScreen2SceneOpen);
     }
 
     public void Tick()
