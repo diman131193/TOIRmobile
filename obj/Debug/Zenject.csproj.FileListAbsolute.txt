@@ -467,7 +467,6 @@ C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEn
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.dll
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SharedInternalsModule.dll
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTracking.dll
-C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpriteMaskModule.dll
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpriteShapeModule.dll
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.StandardEvents.dll
@@ -550,7 +549,6 @@ C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEn
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.ProfilerModule.xml
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.xml
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SharedInternalsModule.xml
-C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpriteMaskModule.xml
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpriteShapeModule.xml
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.StreamingModule.xml

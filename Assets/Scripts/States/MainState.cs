@@ -33,7 +33,7 @@ public class MainState : BaseState {
     public void OnSettingsClicked()
     {
         Debug.Log("ButtonClick MenuSceneOpenSignal");
-        signalBus.Fire<MenuSceneOpenSignal>();
+        signalBus.Fire<Screen2SceneOpenSignal>();
     }
 
 }

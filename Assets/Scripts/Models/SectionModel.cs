@@ -6,5 +6,6 @@ public class SectionModel
 {
     public string Name { get; set; }
     public int Id { get; set; }
+    public DeviceModel[] Objects { get; set; }
 }
 

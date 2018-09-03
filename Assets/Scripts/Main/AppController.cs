@@ -49,7 +49,8 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Subscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
         _signalBus.Subscribe<Screen1SceneOpenSignal>(OnScreen1SceneOpen);
         _signalBus.Subscribe<Screen2SceneOpenSignal>(OnScreen2SceneOpen);
-        _signalBus.Fire<Screen1SceneOpenSignal>();
+        _signalBus.Fire<Screen2SceneOpenSignal>();
+        //_signalBus.Fire<MenuSceneOpenSignal>();
     }
 
     private void OnScreen1SceneOpen()

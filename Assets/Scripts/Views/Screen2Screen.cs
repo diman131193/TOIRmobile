@@ -13,69 +13,117 @@ public class Screen2Screen : BaseScreen
     public ScrollRect ViewSection;
 
     [SerializeField]
+    public ScrollRect ViewObject;
+
+    [SerializeField]
     public RectTransform TogglePrefab;
 
     [SerializeField]
     public BetterToggleGroup department_group;
+    [SerializeField]
+    public BetterToggleGroup section_group;
+    [SerializeField]
+    public BetterToggleGroup object_group;
 
-    public event Action<Toggle> TglGroup_Change = delegate { };
+    public event Action<Toggle> DepartmentTglGroup_Change = delegate { };
+    public event Action<Toggle> SectionTglGroup_Change = delegate { };
+    public event Action<Toggle> ObjectTglGroup_Change = delegate { };
 
     void Start()
     {       
-        department_group.OnChange += TglGroup_Change;
+        department_group.OnChange += DepartmentTglGroup_Change;
+        section_group.OnChange += SectionTglGroup_Change;
+        object_group.OnChange += ObjectTglGroup_Change;
     }
 
 
-    public void RenderScreenContent(DepartmentModel[] departments, ref Dictionary<int, int> result)
+
+    public void RenderScreenContent(DepartmentModel[] departments)
     {
         Debug.Log(departments[0].Name);
+
+        RenderDepartments(departments);
+
+        
+        
+        
+    }
+
+    public void RenderDepartments(DepartmentModel[] departments)
+    {
+
+        //foreach (Transform child in ViewDepartment.content)
+        //{
+        //    Destroy(child.gameObject);
+        //}
+        if (ViewDepartment.content.childCount == 0)
+        {
+            for (var i = 0; i < departments.Length; i++)
+            {
+                var instance = GameObject.Instantiate(TogglePrefab.gameObject) as GameObject;
+                instance.transform.SetParent(ViewDepartment.content, false);
+                instance.transform.Find("Label").GetComponent<Text>().text = departments[i].Name;
+                var toggle = instance.GetComponent<CustomToggle>();
+                toggle.group = ViewDepartment.content.GetComponent<BetterToggleGroup>();
+                toggle.Id = i;
+            }
+        }
+
+        department_group.Start();
+    }
+
+    public void RenderSections(SectionModel[] sections)
+    {
         foreach (Transform child in ViewSection.content)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (Transform child in ViewDepartment.content)
+        foreach (Transform child in ViewObject.content)
         {
             Destroy(child.gameObject);
         }
 
-        RenderDepartments(departments, ref result);
-        department_group.Start();
-    }
-
-    public void RenderDepartments(DepartmentModel[] departments, ref Dictionary<int, int> result)
-    {
-        foreach (var department in departments)
-        {           
-            var instance = GameObject.Instantiate(TogglePrefab.gameObject) as GameObject;
-            instance.transform.SetParent(ViewDepartment.content, false);
-            instance.transform.Find("Label").GetComponent<Text>().text = department.Name;
-            result.Add(instance.GetInstanceID(), department.Id);
-
-            instance.GetComponent<Toggle>().group = ViewDepartment.content.GetComponent<BetterToggleGroup>();
-            
-        }
-    }
-
-    public void RenderSections(DepartmentModel[] data_model, int id)
-    {
-        foreach (var dep in data_model)
+        for (var i = 0; i < sections.Length; i++)
         {
-            if (id == dep.Id)
-            {
-                foreach(var sec in dep.Sections)
-                {
-                    var instance = GameObject.Instantiate(TogglePrefab.gameObject) as GameObject;
-                    instance.transform.SetParent(ViewSection.content, false);
-                    instance.transform.Find("Label").GetComponent<Text>().text = sec.Name;
-                    instance.GetComponent<Toggle>().group = ViewSection.content.GetComponent<BetterToggleGroup>();
-                }
-
-            }
+            var instance = GameObject.Instantiate(TogglePrefab.gameObject) as GameObject;
+            instance.transform.SetParent(ViewSection.content, false);
+            instance.transform.Find("Label").GetComponent<Text>().text = sections[i].Name;
+            var toggle = instance.GetComponent<CustomToggle>();
+            toggle.group = ViewSection.content.GetComponent<BetterToggleGroup>();
+            toggle.Id = i;
         }
+
+        section_group.Start();
+
+    }
+
+    public void RenderObjects(DeviceModel[] objects)
+    {
+        foreach (Transform child in ViewObject.content)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (var i = 0; i < objects.Length; i++)
+        {
+            var instance = GameObject.Instantiate(TogglePrefab.gameObject) as GameObject;
+            instance.transform.SetParent(ViewObject.content, false);
+            instance.transform.Find("Label").GetComponent<Text>().text = objects[i].Name;
+            var toggle = instance.GetComponent<CustomToggle>();
+            toggle.group = ViewObject.content.GetComponent<BetterToggleGroup>();
+            /// Костыль для сервера
+            toggle.Id = i+1;
+        }
+
+        object_group.Start();
+
     }
 
     private void OnDestroy()
     {
+        department_group.OnChange -= DepartmentTglGroup_Change;
+        section_group.OnChange -= SectionTglGroup_Change;
+        object_group.OnChange -= ObjectTglGroup_Change;
     }
 }
