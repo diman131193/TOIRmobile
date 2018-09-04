@@ -10,29 +10,29 @@ public class ModelRotation : MonoBehaviour
 
     [Header("Components")]
     public Transform Model;
-    public Joystick joystick;
+    public Joystick leftJoystick;
+    public Joystick rightJoystick;
 
     void Update() {
-        Vector3 moveVector = Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical;
+        Vector3 leftMoveVector = Vector3.right * leftJoystick.Horizontal + Vector3.up * leftJoystick.Vertical;
+        Vector3 rightMoveVector = Vector3.right * rightJoystick.Horizontal + Vector3.up * rightJoystick.Vertical;
 
-        Vector3 rotateDirection;
-
-        if (moveVector.x > joystickSensivity)
+        if (leftMoveVector.x > joystickSensivity || rightMoveVector.x > joystickSensivity)
         {
             Model.RotateAround(Model.position, Vector3.down, rotationSpeed);
         }
 
-        if (moveVector.x < -joystickSensivity)
+        if (leftMoveVector.x < -joystickSensivity || rightMoveVector.x < -joystickSensivity)
         {
             Model.RotateAround(Model.position, Vector3.up, rotationSpeed);
         }
 
-        if (moveVector.y > joystickSensivity)
+        if (leftMoveVector.y > joystickSensivity || rightMoveVector.y > joystickSensivity)
         {
             Model.RotateAround(Model.position, Vector3.right, rotationSpeed);
         }
 
-        if (moveVector.y < -joystickSensivity)
+        if (leftMoveVector.y < -joystickSensivity || rightMoveVector.y < -joystickSensivity)
         {
             Model.RotateAround(Model.position, Vector3.left, rotationSpeed);
         }

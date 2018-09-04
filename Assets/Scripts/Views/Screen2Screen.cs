@@ -43,9 +43,6 @@ public class Screen2Screen : BaseScreen
         Debug.Log(departments[0].Name);
 
         RenderDepartments(departments);
-
-        
-        
         
     }
 
