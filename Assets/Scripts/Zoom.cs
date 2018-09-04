@@ -6,20 +6,14 @@ public class Zoom : MonoBehaviour {
 
     private Vector2 firstTouchPrevPosition, secondTouchPrevPosition;
 
-    private float touchesPrevPosDifference, touchesCurPosDifference, zoomModifier;
+    private float touchesPrevPosDifference, touchesCurPosDifference, zoomModifier, zoomZ;
 
     [Header("Options")]
-    public float zoomModifierSpeed;
+    public float zoomModifierSpeed = 0.05f;
 
     [Header("Components")]
-    public Camera cam;
+    public Transform Model;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
         if (Input.touchCount == 2)
         {
@@ -36,20 +30,15 @@ public class Zoom : MonoBehaviour {
 
             if (touchesPrevPosDifference > touchesCurPosDifference)
             {
-                cam.orthographicSize += zoomModifier;
-                //Model.Translate(Model.position.x, Model.position.y, Model.position.z + zoomModifier);
+                zoomZ = Mathf.Clamp(Model.position.z + zoomModifier, 25.0f, 60.0f);
             }
 
             if (touchesPrevPosDifference < touchesCurPosDifference)
             {
-                cam.orthographicSize -= zoomModifier;
-                //Model.Translate(Model.position.x, Model.position.y, Model.position.z - zoomModifier);
+                zoomZ = Mathf.Clamp(Model.position.z - zoomModifier, 25.0f, 60.0f);
             }
-            
-            
-        }
-        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 2.0f, 10.0f);
-        Debug.Log(cam.orthographicSize);
 
+            Model.position = new Vector3(Model.position.x, Model.position.y, zoomZ);
+        }
     }
 }

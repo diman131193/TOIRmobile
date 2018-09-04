@@ -21,6 +21,7 @@ public class MainState : BaseState {
         model = GameObject.Instantiate(deviceModel.Object);
         mainScreen.SettingsClicked += OnSettingsClicked;
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
+        mainScreen.GetComponent<Zoom>().Model = model.transform;
         mainScreen.Show();
     }
     public override void Unload()
