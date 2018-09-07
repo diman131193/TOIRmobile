@@ -22,20 +22,21 @@ public class AppInstaller : MonoInstaller
 
     private void InstallStates()
     {
-        Container.Bind<MenuState>().AsSingle();
         Container.Bind<MainState>().AsSingle();
         Container.Bind<LoadState>().AsSingle();
-        Container.Bind<Screen1State>().AsSingle();
-        Container.Bind<Screen2State>().AsSingle();
+        Container.Bind<SettingsState>().AsSingle();
+        Container.Bind<SelectionState>().AsSingle();
+        Container.Bind<StartState>().AsSingle();
     }
 
     private void InstallViews()
     {
-        Container.Bind<MenuScreen>().FromInstance(_uiManager.MenuScreen).AsSingle();
+        Container.Bind<Layout>().FromInstance(_uiManager.Layout).AsSingle();
         Container.Bind<MainScreen>().FromInstance(_uiManager.MainScreen).AsSingle();
         Container.Bind<LoadScreen>().FromInstance(_uiManager.LoadScreen).AsSingle();
-        Container.Bind<Screen1Screen>().FromInstance(_uiManager.Screen1Screen).AsSingle();
-        Container.Bind<Screen2Screen>().FromInstance(_uiManager.Screen2Screen).AsSingle();
+        Container.Bind<SettingsScreen>().FromInstance(_uiManager.SettingsScreen).AsSingle();
+        Container.Bind<SelectionScreen>().FromInstance(_uiManager.SelectionScreen).AsSingle();
+        Container.Bind<StartScreen>().FromInstance(_uiManager.StartScreen).AsSingle();
     }
 
     void InstallMisc()
@@ -48,11 +49,11 @@ public class AppInstaller : MonoInstaller
     void InstallSignals()
     {
         SignalBusInstaller.Install(Container);
-        Container.DeclareSignal<MenuSceneOpenSignal>();
         Container.DeclareSignal<MainSceneOpenSignal>();
         Container.DeclareSignal<LoadSceneOpenSignal>();
-        Container.DeclareSignal<Screen1SceneOpenSignal>();
-        Container.DeclareSignal<Screen2SceneOpenSignal>();
+        Container.DeclareSignal<SettingsSceneOpenSignal>();
+        Container.DeclareSignal<SelectionSceneOpenSignal>();
+        Container.DeclareSignal<StartSceneOpenSignal>();
     }
 
     void InstallExecutionOrder()

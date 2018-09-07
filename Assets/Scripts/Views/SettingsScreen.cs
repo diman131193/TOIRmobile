@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Screen1Screen : BaseScreen 
+public class SettingsScreen : BaseScreen 
 {
 
     [SerializeField]

@@ -2,5 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Screen1SceneOpenSignal {
+public struct StartSceneOpenSignal
+{
 }

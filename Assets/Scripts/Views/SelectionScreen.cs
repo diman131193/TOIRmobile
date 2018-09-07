@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Screen2Screen : BaseScreen 
+public class SelectionScreen : BaseScreen 
 {
     [SerializeField]
     public ScrollRect ViewDepartment;
@@ -34,6 +34,8 @@ public class Screen2Screen : BaseScreen
         department_group.OnChange += DepartmentTglGroup_Change;
         section_group.OnChange += SectionTglGroup_Change;
         object_group.OnChange += ObjectTglGroup_Change;
+
+        base.SetTitle("Выбор узла");
     }
 
 

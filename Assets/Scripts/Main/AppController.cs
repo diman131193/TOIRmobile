@@ -17,17 +17,17 @@ public class AppController : IInitializable, ITickable, IDisposable
     private readonly StateMachine _stateMachine;
 
     [Inject]
-    private MenuState menuState;
-    [Inject]
     private MainState mainState;
     [Inject]
     private LoadState loadState;
+    [Inject]
+    private StartState startState;
 
     [Inject]
-    private Screen1State screen1State;
+    private SettingsState settingsState;
 
     [Inject]
-    private Screen2State screen2State;
+    private SelectionState selectionState;
 
     GameStates _state = GameStates.WaitingToStart;
 
@@ -44,25 +44,30 @@ public class AppController : IInitializable, ITickable, IDisposable
 
     public void Initialize()
     {
-        _signalBus.Subscribe<MenuSceneOpenSignal>(OnMenuSceneOpen);
         _signalBus.Subscribe<MainSceneOpenSignal>(OnMainSceneOpen);
         _signalBus.Subscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
-        _signalBus.Subscribe<Screen1SceneOpenSignal>(OnScreen1SceneOpen);
-        _signalBus.Subscribe<Screen2SceneOpenSignal>(OnScreen2SceneOpen);
-        _signalBus.Fire<Screen2SceneOpenSignal>();
-        //_signalBus.Fire<MenuSceneOpenSignal>();
+        _signalBus.Subscribe<SettingsSceneOpenSignal>(OnSettingsSceneOpen);
+        _signalBus.Subscribe<SelectionSceneOpenSignal>(OnSelectionSceneOpen);
+        _signalBus.Subscribe<StartSceneOpenSignal>(OnStartSceneOpen);
+        _signalBus.Fire<StartSceneOpenSignal>();
     }
 
-    private void OnScreen1SceneOpen()
+    private void OnStartSceneOpen()
     {
         _stateMachine.Unload(false);
-        _stateMachine.Load(screen1State);
+        _stateMachine.Load(startState);
     }
 
-    private void OnScreen2SceneOpen()
+    private void OnSettingsSceneOpen()
     {
         _stateMachine.Unload(false);
-        _stateMachine.Load(screen2State);
+        _stateMachine.Load(settingsState);
+    }
+
+    private void OnSelectionSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(selectionState);
     }
 
     private void OnLoadSceneOpen(LoadSceneOpenSignal signal)
@@ -70,12 +75,6 @@ public class AppController : IInitializable, ITickable, IDisposable
         _stateMachine.Unload(false);
         loadState.ModelId = signal.id;
         _stateMachine.Load(loadState);
-    }
-
-    private void OnMenuSceneOpen()
-    {
-        _stateMachine.Unload(false);
-        _stateMachine.Load(menuState);
     }
 
     private void OnMainSceneOpen()
@@ -86,11 +85,11 @@ public class AppController : IInitializable, ITickable, IDisposable
 
     public void Dispose()
     {
-        _signalBus.Unsubscribe<MenuSceneOpenSignal>(OnMenuSceneOpen);
         _signalBus.Unsubscribe<MainSceneOpenSignal>(OnMainSceneOpen);
         _signalBus.Unsubscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
-        _signalBus.Unsubscribe<Screen1SceneOpenSignal>(OnScreen1SceneOpen);
-        _signalBus.Unsubscribe<Screen2SceneOpenSignal>(OnScreen2SceneOpen);
+        _signalBus.Unsubscribe<SettingsSceneOpenSignal>(OnSettingsSceneOpen);
+        _signalBus.Unsubscribe<SelectionSceneOpenSignal>(OnSelectionSceneOpen);
+        _signalBus.Unsubscribe<StartSceneOpenSignal>(OnStartSceneOpen);
     }
 
     public void Tick()

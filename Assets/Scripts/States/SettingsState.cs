@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Screen1State : BaseState {
+public class SettingsState : BaseState {
 
     [Inject]
-    public Screen1Screen screen1Screen { get; private set; }
+    public SettingsScreen settingsScreen { get; private set; }
 
     [Inject]
     private SignalBus signalBus;
@@ -18,24 +18,24 @@ public class Screen1State : BaseState {
     public override void Load()
     {
         base.Load();
-        screen1Screen.SettingsClicked += OnSettingsClicked;
-        screen1Screen.Show();
+        settingsScreen.SettingsClicked += OnSettingsClicked;
+        settingsScreen.Show();
     }
     public override void Unload()
     {
         base.Unload();
-        screen1Screen.SettingsClicked -= OnSettingsClicked;
-        screen1Screen.Hide();
+        settingsScreen.SettingsClicked -= OnSettingsClicked;
+        settingsScreen.Hide();
     }
 
     public void OnSettingsClicked()
     {
-        login = screen1Screen.GetLogin();
-        password = screen1Screen.GetPassword();
+        login = settingsScreen.GetLogin();
+        password = settingsScreen.GetPassword();
 
         if (login != "" && password != "")
         {
-            signalBus.Fire<Screen2SceneOpenSignal>();
+            signalBus.Fire<StartSceneOpenSignal>();
         }
     }
 

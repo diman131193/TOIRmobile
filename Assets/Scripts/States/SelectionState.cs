@@ -6,10 +6,10 @@ using Zenject;
 using System.Linq;
 using UnityEngine.UI;
 
-public class Screen2State : BaseState {
+public class SelectionState : BaseState {
 
     [Inject]
-    public Screen2Screen screen2Screen { get; private set; }
+    public SelectionScreen selectionScreen { get; private set; }
     [Inject]
     private SignalBus signalBus;
     
@@ -47,14 +47,14 @@ public class Screen2State : BaseState {
         int departments_count = 9;
         int sections_count = 9;
 
-        screen2Screen.DepartmentTglGroup_Change += TglGroup_OnChange;
-        screen2Screen.SectionTglGroup_Change += SectionTglGroup_Change;
-        screen2Screen.ObjectTglGroup_Change += ObjectTglGroup_Change;
+        selectionScreen.DepartmentTglGroup_Change += TglGroup_OnChange;
+        selectionScreen.SectionTglGroup_Change += SectionTglGroup_Change;
+        selectionScreen.ObjectTglGroup_Change += ObjectTglGroup_Change;
 
         data_model = GetDepartments(departments_count, sections_count);
 
-        screen2Screen.RenderScreenContent(data_model);
-        screen2Screen.Show();
+        selectionScreen.RenderScreenContent(data_model);
+        selectionScreen.Show();
 
     }
 
@@ -62,16 +62,16 @@ public class Screen2State : BaseState {
     public override void Unload()
     {
         base.Unload();
-        screen2Screen.DepartmentTglGroup_Change -= TglGroup_OnChange;
-        screen2Screen.SectionTglGroup_Change -= SectionTglGroup_Change;
-        screen2Screen.ObjectTglGroup_Change -= ObjectTglGroup_Change;
-        screen2Screen.Hide();
+        selectionScreen.DepartmentTglGroup_Change -= TglGroup_OnChange;
+        selectionScreen.SectionTglGroup_Change -= SectionTglGroup_Change;
+        selectionScreen.ObjectTglGroup_Change -= ObjectTglGroup_Change;
+        selectionScreen.Hide();
     }
 
     public void TglGroup_OnChange(Toggle newActive)
     {
         currDepartment = data_model.Where(x => x.Id == ((CustomToggle)newActive).Id).FirstOrDefault();
-        screen2Screen.RenderSections(currDepartment.Sections);
+        selectionScreen.RenderSections(currDepartment.Sections);
     }
 
 
@@ -83,6 +83,6 @@ public class Screen2State : BaseState {
     private void SectionTglGroup_Change(Toggle obj)
     {
         currSection = currDepartment.Sections.Where(x => x.Id == ((CustomToggle)obj).Id).FirstOrDefault();
-        screen2Screen.RenderObjects(currSection.Objects);
+        selectionScreen.RenderObjects(currSection.Objects);
     }
 }

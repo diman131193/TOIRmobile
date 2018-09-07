@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BaseState : IState {
 
-	// Use this for initialization
-	public virtual void Load () {
+    // Use this for initialization
+    public virtual void Load () {
 		
 	}
 	

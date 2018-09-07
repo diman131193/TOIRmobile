@@ -32,7 +32,7 @@ public class LoadState : BaseState {
         if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
         {
             Debug.Log(www.error);
-            signalBus.Fire<Screen2SceneOpenSignal>();
+            signalBus.Fire<SelectionSceneOpenSignal>();
         }
         else
         {
