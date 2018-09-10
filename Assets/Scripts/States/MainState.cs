@@ -19,7 +19,8 @@ public class MainState : BaseState {
         base.Load();
         mainScreen.SetTitle(deviceModel.Name);
         model = GameObject.Instantiate(deviceModel.Object);
-        mainScreen.SettingsClicked += OnSettingsClicked;
+        mainScreen.ButtonUpClicked += ButtonUpClicked;
+        mainScreen.ButtonDownClicked += ButtonDownClicked;
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().Model = model.transform;
         mainScreen.Show();
@@ -27,15 +28,21 @@ public class MainState : BaseState {
     public override void Unload()
     {
         base.Unload();
-        mainScreen.SettingsClicked -= OnSettingsClicked;
+        mainScreen.ButtonUpClicked -= ButtonUpClicked;
+        mainScreen.ButtonDownClicked -= ButtonDownClicked;
         GameObject.Destroy(model);
         mainScreen.Hide();
     }
 
-    public void OnSettingsClicked()
+    public void ButtonUpClicked()
     {
         Debug.Log("ButtonClick MenuSceneOpenSignal");
         signalBus.Fire<SelectionSceneOpenSignal>();
     }
 
+    public void ButtonDownClicked()
+    {
+        Debug.Log("ButtonClick MenuSceneOpenSignal");
+        signalBus.Fire<SelectionSceneOpenSignal>();
+    }
 }

@@ -5,17 +5,27 @@ using UnityEngine.UI;
 public class MainScreen : BaseScreen 
 {
     [SerializeField]
-    private Button _settingsButton;
+    private Button ButtonUp;
+
+    [SerializeField]
+    private Button ButtonDown;
+
     [SerializeField]
     private Text _title;
 
-    public event Action SettingsClicked = delegate { };
+    public event Action ButtonUpClicked = delegate { };
+    public event Action ButtonDownClicked = delegate { };
 
     void Start()
     {
-        _settingsButton.onClick.AddListener(()=>
+        ButtonUp.onClick.AddListener(()=>
         {
-            SettingsClicked();
+            ButtonUpClicked();
+        });
+
+        ButtonDown.onClick.AddListener(() =>
+        {
+            ButtonDownClicked();
         });
     }
 
@@ -26,6 +36,7 @@ public class MainScreen : BaseScreen
 
     private void OnDestroy()
     {
-        _settingsButton.onClick.RemoveAllListeners();
+        ButtonUp.onClick.RemoveAllListeners();
+        ButtonDown.onClick.RemoveAllListeners();
     }
 }
