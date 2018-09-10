@@ -17,6 +17,7 @@ public class StartState : BaseState
         base.Load();
         startScreen.StartClicked += OnStartClicked;
         startScreen.SettingsClicked += OnSettingsClicked;
+        startScreen.SetTitle("ТОИР");
         startScreen.Show();
     }
     public override void Unload()

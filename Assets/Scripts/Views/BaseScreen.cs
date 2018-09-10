@@ -20,7 +20,7 @@ public abstract class BaseScreen : MonoBehaviour {
         gameObject.SetActive(true);
 	}
 
-    protected void SetTitle(string text)
+    public void SetTitle(string text)
     {
         layout.SetTitle(text);
     }

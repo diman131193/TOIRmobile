@@ -623,6 +623,10 @@
       <Project>{A2DF5E58-BB45-790F-528B-415E41E432CA}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{B94E2FA7-1893-9231-9599-8CD1C2C7B8C4}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject.csproj">
       <Project>{9D10E572-1E71-0EFB-4B09-BD7E669F606C}</Project>
       <Name>Zenject</Name>
@@ -632,25 +636,45 @@
     <Compile Include="Assets\Scripts\Installers\AppInstaller.cs" />
     <Compile Include="Assets\Scripts\Main\AppController.cs" />
     <Compile Include="Assets\Scripts\Main\UIManager.cs" />
+    <Compile Include="Assets\Scripts\ModelRotation.cs" />
+    <Compile Include="Assets\Scripts\Models\DepartmentModel.cs" />
     <Compile Include="Assets\Scripts\Models\DeviceModel.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Models\SectionModel.cs" />
     <Compile Include="Assets\Scripts\Signals\LoadSceneOpenSignal.cs" />
     <Compile Include="Assets\Scripts\Signals\MainSceneOpenSignal.cs" />
-    <Compile Include="Assets\Scripts\Signals\MenuSceneOpenSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\SelectionSceneOpenSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\SettingsSceneOpenSignal.cs" />
+    <Compile Include="Assets\Scripts\Signals\StartSceneOpenSignal.cs" />
     <Compile Include="Assets\Scripts\States\BaseState.cs" />
     <Compile Include="Assets\Scripts\States\IState.cs" />
     <Compile Include="Assets\Scripts\States\LoadState.cs" />
     <Compile Include="Assets\Scripts\States\MainState.cs" />
-    <Compile Include="Assets\Scripts\States\MenuState.cs" />
+    <Compile Include="Assets\Scripts\States\SelectionState.cs" />
+    <Compile Include="Assets\Scripts\States\SettingsState.cs" />
+    <Compile Include="Assets\Scripts\States\StartState.cs" />
     <Compile Include="Assets\Scripts\States\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Tmp\Model.cs" />
+    <Compile Include="Assets\Scripts\Tmp\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\Tmp\OnMouseClick.cs" />
+    <Compile Include="Assets\Scripts\UI\BetterToggleGroup.cs" />
+    <Compile Include="Assets\Scripts\UI\CustomToggle.cs" />
+    <Compile Include="Assets\Scripts\UI\Joystick.cs" />
     <Compile Include="Assets\Scripts\Views\BaseScreen.cs" />
+    <Compile Include="Assets\Scripts\Views\Layout.cs" />
     <Compile Include="Assets\Scripts\Views\LoadingIcon.cs" />
     <Compile Include="Assets\Scripts\Views\LoadScreen.cs" />
     <Compile Include="Assets\Scripts\Views\MainScreen.cs" />
-    <Compile Include="Assets\Scripts\Views\MenuScreen.cs" />
+    <Compile Include="Assets\Scripts\Views\SelectionScreen.cs" />
+    <Compile Include="Assets\Scripts\Views\SettingsScreen.cs" />
+    <Compile Include="Assets\Scripts\Views\StartScreen.cs" />
+    <Compile Include="Assets\Scripts\Zoom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
+    <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Fonts\Space.txt" />
+    <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\AddSmooth_Layer.shader" />
+    <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Add_Layer.shader" />
+    <None Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Particle Alpha Blend_IgnoreFog.shader" />
     <None Include="Assets\Plugins\Zenject\Source\Usage\link.xml" />
     <None Include="Assets\Plugins\Zenject\Version.txt" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />

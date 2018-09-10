@@ -11,7 +11,7 @@ public class MainScreen : BaseScreen
     private Button ButtonDown;
 
     [SerializeField]
-    private Text _title;
+    public Text Prompt;
 
     public event Action ButtonUpClicked = delegate { };
     public event Action ButtonDownClicked = delegate { };
@@ -27,11 +27,6 @@ public class MainScreen : BaseScreen
         {
             ButtonDownClicked();
         });
-    }
-
-    public void SetTitle(string title)
-    {
-        _title.text = title;
     }
 
     private void OnDestroy()

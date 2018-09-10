@@ -28,13 +28,13 @@ public class SelectionState : BaseState {
             {
                 sections[j] = new SectionModel();
                 sections[j].Id = j;
-                sections[j].Name = "Dep" + (i + 1) + "_Section" + (j + 1);
-                sections[j].Objects = new DeviceModel[] { new DeviceModel() { Name = "Model1", id = 1 }, new DeviceModel() { Name = "Model2", id = 2 } };
+                sections[j].Name = "Участок " + (j + 1);
+                sections[j].Objects = new DeviceModel[] { new DeviceModel() { Name = "Мешалка", id = 1 }, new DeviceModel() { Name = "Трактор", id = 2 } };
             }
 
             results[i] = new DepartmentModel();
             results[i].Id = i;
-            results[i].Name = "Department" + (i);
+            results[i].Name = "Цех " + (i + 1);
             results[i].Sections = sections;
         }
         return results;
@@ -54,6 +54,7 @@ public class SelectionState : BaseState {
         data_model = GetDepartments(departments_count, sections_count);
 
         selectionScreen.RenderScreenContent(data_model);
+        selectionScreen.SetTitle("Выбор узла");
         selectionScreen.Show();
 
     }

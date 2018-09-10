@@ -13,14 +13,22 @@ public class MainState : BaseState {
     private DeviceModel deviceModel;
 
     private GameObject model;
+    private Animator animator;
 
     public override void Load()
     {
-        base.Load();
-        mainScreen.SetTitle(deviceModel.Name);
-        model = GameObject.Instantiate(deviceModel.Object);
         mainScreen.ButtonUpClicked += ButtonUpClicked;
         mainScreen.ButtonDownClicked += ButtonDownClicked;
+        base.Load();
+
+
+        mainScreen.SetTitle("Мешалка");
+        model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0,0,25), Quaternion.identity);
+        animator = model.GetComponentInChildren<Animator>();
+        ///Модель сервера
+        //model = GameObject.Instantiate(deviceModel.Object);
+        //mainScreen.SetTitle(deviceModel.Name);
+        mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().Model = model.transform;
         mainScreen.Show();
@@ -36,13 +44,15 @@ public class MainState : BaseState {
 
     public void ButtonUpClicked()
     {
-        Debug.Log("ButtonClick MenuSceneOpenSignal");
-        signalBus.Fire<SelectionSceneOpenSignal>();
+        var currentState = animator.GetInteger("state");
+        animator.SetInteger("state", currentState + 1);
+        mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
     }
 
     public void ButtonDownClicked()
     {
-        Debug.Log("ButtonClick MenuSceneOpenSignal");
-        signalBus.Fire<SelectionSceneOpenSignal>();
+        var currentState = animator.GetInteger("state");
+        if (currentState > 0) animator.SetInteger("state", currentState - 1);
+        mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
     }
 }

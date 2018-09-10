@@ -24,7 +24,6 @@ public class StartScreen : BaseScreen
         {
             SettingsClicked();
         });
-        this.SetTitle("ТОИР");
     }
 
     private void OnDestroy()

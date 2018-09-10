@@ -22,6 +22,7 @@ public class LoadState : BaseState {
         base.Load();
         loadScreen.Show();
         loadScreen.StartCoroutine(GetAssetBundle());
+        loadScreen.SetTitle("Загрузка");
     }
 
     IEnumerator GetAssetBundle()

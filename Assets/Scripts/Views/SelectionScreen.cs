@@ -35,7 +35,6 @@ public class SelectionScreen : BaseScreen
         section_group.OnChange += SectionTglGroup_Change;
         object_group.OnChange += ObjectTglGroup_Change;
 
-        base.SetTitle("Выбор узла");
     }
 
 
