@@ -44,15 +44,23 @@ public class MainState : BaseState {
 
     public void ButtonUpClicked()
     {
+        ///Todo hardcode
         var currentState = animator.GetInteger("state");
-        animator.SetInteger("state", currentState + 1);
-        mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+        if (currentState < 4)
+        {
+            animator.SetInteger("state", currentState + 1);
+            mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+        }
     }
 
     public void ButtonDownClicked()
     {
+        ///Todo hardcode
         var currentState = animator.GetInteger("state");
-        if (currentState > 0) animator.SetInteger("state", currentState - 1);
-        mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+        if (currentState > 0)
+        {
+            animator.SetInteger("state", currentState - 1);
+            mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+        }
     }
 }

@@ -600,3 +600,5 @@ C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\obj\Debug\Zenject.cspr
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\obj\Debug\Zenject.csproj.CopyComplete
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\obj\Debug\Zenject.dll
 C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\obj\Debug\Zenject.pdb
+C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll
+C:\Users\karibov.METHOLDING\source\repos\Unity\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml

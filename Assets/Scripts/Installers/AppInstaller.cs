@@ -54,6 +54,7 @@ public class AppInstaller : MonoInstaller
         Container.DeclareSignal<SettingsSceneOpenSignal>();
         Container.DeclareSignal<SelectionSceneOpenSignal>();
         Container.DeclareSignal<StartSceneOpenSignal>();
+        Container.DeclareSignal<BackButtonPressedSignal>();
     }
 
     void InstallExecutionOrder()

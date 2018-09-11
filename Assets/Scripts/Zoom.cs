@@ -30,12 +30,12 @@ public class Zoom : MonoBehaviour {
 
             if (touchesPrevPosDifference > touchesCurPosDifference)
             {
-                zoomZ = Mathf.Clamp(Model.position.z + zoomModifier, 25.0f, 60.0f);
+                zoomZ = Mathf.Clamp(Model.position.z + zoomModifier, 15.0f, 60.0f);
             }
 
             if (touchesPrevPosDifference < touchesCurPosDifference)
             {
-                zoomZ = Mathf.Clamp(Model.position.z - zoomModifier, 25.0f, 60.0f);
+                zoomZ = Mathf.Clamp(Model.position.z - zoomModifier, 15.0f, 60.0f);
             }
 
             Model.position = new Vector3(Model.position.x, Model.position.y, zoomZ);

@@ -31,16 +31,21 @@ public class StateMachine : IStateMachine
         state.Load();
     }
 
-    public void Unload(bool loadPrev)
+    public void Unload(bool backButton)
     {
         if (stateStack.Count == 0)
             return;
-        var state = stateStack.Pop();
+        if (backButton && stateStack.Count == 0)
+        {
+            Application.Quit();
+        }
+        var state = stateStack.Peek();
         state.Unload();
         if (currentState == state)
             currentState = null;
-        if (loadPrev && LastState != null)
+        if (backButton && stateStack.Count > 1)
         {
+            stateStack.Pop();
             currentState = LastState;
             currentState.Load();
         }

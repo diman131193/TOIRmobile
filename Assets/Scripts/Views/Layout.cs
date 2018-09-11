@@ -23,6 +23,14 @@ public class Layout : MonoBehaviour
         });
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            signalBus.Fire<BackButtonPressedSignal>();
+        }
+    }
+
     public void SetTitle(string text)
     {
         titleText.text = text;
