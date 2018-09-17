@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class MainScreen : BaseScreen 
 {
     [SerializeField]
-    private Button ButtonUp;
+    public Button ButtonUp;
 
     [SerializeField]
-    private Button ButtonDown;
+    public Button ButtonDown;
 
     [SerializeField]
     public Text Prompt;
@@ -27,6 +27,8 @@ public class MainScreen : BaseScreen
         {
             ButtonDownClicked();
         });
+
+        ButtonDown.interactable = false;
     }
 
     private void OnDestroy()

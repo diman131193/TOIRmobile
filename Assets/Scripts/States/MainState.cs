@@ -46,23 +46,34 @@ public class MainState : BaseState {
 
     public void ButtonUpClicked()
     {
-        ///Todo hardcode
+        ///Todo hardcode. Hardcode comleted;
         var currentState = animator.GetInteger("state");
+        mainScreen.ButtonDown.interactable = true;
         if (currentState < 4)
         {
             animator.SetInteger("state", currentState + 1);
             mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
         }
+        if (currentState + 1 == 4)
+        {
+            mainScreen.ButtonUp.interactable = false;
+        }
     }
 
     public void ButtonDownClicked()
     {
-        ///Todo hardcode
+        ///Todo hardcode. Hardcode comleted; 
         var currentState = animator.GetInteger("state");
+        mainScreen.ButtonUp.interactable = true;
+
         if (currentState > 0)
         {
             animator.SetInteger("state", currentState - 1);
             mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+        }
+        if (currentState - 1 == 0)
+        {
+            mainScreen.ButtonDown.interactable = false;
         }
     }
 }
