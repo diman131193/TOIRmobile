@@ -35,9 +35,9 @@ public class StateMachine : IStateMachine
     {
         if (stateStack.Count == 0)
             return;
-        if (backButton && stateStack.Count == 0)
+        if (backButton && (stateStack.Count == 0 || currentState is StartScreen))
         {
-            Application.Quit();
+            AppQuit();
         }
         var state = stateStack.Peek();
         state.Unload();
@@ -46,8 +46,23 @@ public class StateMachine : IStateMachine
         if (backButton && stateStack.Count > 1)
         {
             stateStack.Pop();
+            if (LastState is LoadState)
+                stateStack.Pop();
             currentState = LastState;
             currentState.Load();
+        }
+    }
+
+    private void AppQuit()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            AndroidJavaObject activity = new AndroidJavaClass("com.IMH.TOIR").GetStatic<AndroidJavaObject>("currentActivity");
+            activity.Call<bool>("moveTaskToBack", true);
+        }
+        else
+        {
+            Application.Quit();
         }
     }
 }

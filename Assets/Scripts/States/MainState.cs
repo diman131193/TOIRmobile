@@ -21,10 +21,12 @@ public class MainState : BaseState {
         mainScreen.ButtonDownClicked += ButtonDownClicked;
         base.Load();
 
-
-        mainScreen.SetTitle("Мешалка");
-        model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0,0,25), Quaternion.identity);
-        animator = model.GetComponentInChildren<Animator>();
+        if (deviceModel.id == 2)
+        {
+            mainScreen.SetTitle("Комбайн МВ-12");
+            model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0, 0, 25), Quaternion.identity);
+            animator = model.GetComponentInChildren<Animator>();
+        }
         ///Модель сервера
         //model = GameObject.Instantiate(deviceModel.Object);
         //mainScreen.SetTitle(deviceModel.Name);

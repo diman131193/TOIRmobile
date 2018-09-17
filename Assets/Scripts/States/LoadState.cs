@@ -21,38 +21,39 @@ public class LoadState : BaseState {
     {
         base.Load();
         loadScreen.Show();
-        loadScreen.StartCoroutine(GetAssetBundle());
+        loadScreen.StartCoroutine(Timer_Elapsed());
+        //loadScreen.StartCoroutine(GetAssetBundle());
         loadScreen.SetTitle("Загрузка");
     }
+    //IEnumerator GetAssetBundle()
+    //{
+    //    UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://10.10.47.201/toir/api/values/getbundle/" + ModelId + "?device=" + Application.platform.ToString()); 
+    //    yield return www.SendWebRequest();
 
-    IEnumerator GetAssetBundle()
+    //    if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
+    //    {
+    //        Debug.Log(www.error);
+    //        signalBus.Fire<SelectionSceneOpenSignal>();
+    //    }
+    //    else
+    //    {
+    //        AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(www);
+    //        //var prefab = bundle.LoadAsset<GameObject>("Combain");
+    //        var prefab = bundle.LoadAsset<GameObject>("Cube" + ModelId);
+    //        //Instantiate(prefab);
+    //        deviceModel.Object = prefab;
+    //        deviceModel.Name = "Cube " + ModelId;
+    //        deviceModel.Description = "awdaawdawd";
+    //        bundle.Unload(false);
+    //        signalBus.Fire<MainSceneOpenSignal>();
+    //    }
+
+//}
+
+private IEnumerator Timer_Elapsed()
     {
-        UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://10.10.47.201/toir/api/values/getbundle/" + ModelId + "?device=" + Application.platform.ToString()); 
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
-        {
-            Debug.Log(www.error);
-            signalBus.Fire<SelectionSceneOpenSignal>();
-        }
-        else
-        {
-            AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(www);
-            //var prefab = bundle.LoadAsset<GameObject>("Combain");
-            var prefab = bundle.LoadAsset<GameObject>("Cube" + ModelId);
-            //Instantiate(prefab);
-            deviceModel.Object = prefab;
-            deviceModel.Name = "Cube " + ModelId;
-            deviceModel.Description = "awdaawdawd";
-            bundle.Unload(false);
-            signalBus.Fire<MainSceneOpenSignal>();
-        }
-        
-    }
-
-    private IEnumerator Timer_Elapsed()
-    {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        deviceModel.id = ModelId;
         signalBus.Fire<MainSceneOpenSignal>();
     }
 
