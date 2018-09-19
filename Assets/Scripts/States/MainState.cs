@@ -26,6 +26,11 @@ public class MainState : BaseState {
             mainScreen.SetTitle("Комбайн МВ-12");
             model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0, 0, 25), Quaternion.identity);
             animator = model.GetComponentInChildren<Animator>();
+        } else if (deviceModel.id == 1)
+        {
+            mainScreen.SetTitle("Ролик прокатный");
+            model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/rolik"), new Vector3(0, 0, 25), Quaternion.identity);
+            animator = model.GetComponentInChildren<Animator>();
         }
         ///Модель сервера
         //model = GameObject.Instantiate(deviceModel.Object);
@@ -49,14 +54,29 @@ public class MainState : BaseState {
         ///Todo hardcode. Hardcode comleted;
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonDown.interactable = true;
-        if (currentState < 4)
+        if (deviceModel.id == 1)
         {
-            animator.SetInteger("state", currentState + 1);
-            mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            if (currentState < 6)
+            {
+                animator.SetInteger("state", currentState + 1);
+                mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            }
+            if (currentState + 1 == 6)
+            {
+                mainScreen.ButtonUp.interactable = false;
+            }
         }
-        if (currentState + 1 == 4)
+        else if (deviceModel.id == 2)
         {
-            mainScreen.ButtonUp.interactable = false;
+            if (currentState < 4)
+            {
+                animator.SetInteger("state", currentState + 1);
+                mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            }
+            if (currentState + 1 == 4)
+            {
+                mainScreen.ButtonUp.interactable = false;
+            }
         }
     }
 
@@ -65,15 +85,29 @@ public class MainState : BaseState {
         ///Todo hardcode. Hardcode comleted; 
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonUp.interactable = true;
-
-        if (currentState > 0)
+        if (deviceModel.id == 1)
         {
-            animator.SetInteger("state", currentState - 1);
-            mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            if (currentState > 0)
+            {
+                animator.SetInteger("state", currentState - 1);
+                mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            }
+            if (currentState - 1 == 0)
+            {
+                mainScreen.ButtonDown.interactable = false;
+            }
         }
-        if (currentState - 1 == 0)
+        else if (deviceModel.id == 2)
         {
-            mainScreen.ButtonDown.interactable = false;
+            if (currentState > 0)
+            {
+                animator.SetInteger("state", currentState - 1);
+                mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            }
+            if (currentState - 1 == 0)
+            {
+                mainScreen.ButtonDown.interactable = false;
+            }
         }
     }
 }
