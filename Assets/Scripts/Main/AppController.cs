@@ -29,6 +29,9 @@ public class AppController : IInitializable, ITickable, IDisposable
     [Inject]
     private SelectionState selectionState;
 
+    [Inject]
+    private BillsState billsState;
+
     GameStates _state = GameStates.WaitingToStart;
 
     public AppController(SignalBus signalBus, StateMachine stateMachine)
@@ -49,8 +52,15 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Subscribe<SettingsSceneOpenSignal>(OnSettingsSceneOpen);
         _signalBus.Subscribe<SelectionSceneOpenSignal>(OnSelectionSceneOpen);
         _signalBus.Subscribe<StartSceneOpenSignal>(OnStartSceneOpen);
+        _signalBus.Subscribe<BillsSceneOpenSignal>(OnBillsSceneOpen);
         _signalBus.Subscribe<BackButtonPressedSignal>(OnBackButtonPressed);
         _signalBus.Fire<StartSceneOpenSignal>();
+    }
+
+    private void OnBillsSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(billsState);
     }
 
     private void OnBackButtonPressed()
@@ -97,6 +107,7 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Unsubscribe<SettingsSceneOpenSignal>(OnSettingsSceneOpen);
         _signalBus.Unsubscribe<SelectionSceneOpenSignal>(OnSelectionSceneOpen);
         _signalBus.Unsubscribe<StartSceneOpenSignal>(OnStartSceneOpen);
+        _signalBus.Unsubscribe<BillsSceneOpenSignal>(OnBillsSceneOpen);
         _signalBus.Unsubscribe<BackButtonPressedSignal>(OnBackButtonPressed);
     }
 

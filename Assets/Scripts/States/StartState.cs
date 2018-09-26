@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -17,9 +18,12 @@ public class StartState : BaseState
         base.Load();
         startScreen.StartClicked += OnStartClicked;
         startScreen.SettingsClicked += OnSettingsClicked;
+        startScreen.BillsClicked += OnBillsClicked;
         startScreen.SetTitle("ТОиР");
         startScreen.Show();
     }
+
+ 
     public override void Unload()
     {
         base.Unload();
@@ -37,5 +41,11 @@ public class StartState : BaseState
     {
         signalBus.Fire<SelectionSceneOpenSignal>();
     }
+
+    private void OnBillsClicked()
+    {
+        signalBus.Fire<BillsSceneOpenSignal>();
+    }
+
 
 }

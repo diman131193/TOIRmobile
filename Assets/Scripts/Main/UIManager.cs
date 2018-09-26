@@ -9,4 +9,5 @@ public class UIManager : MonoBehaviour
     public SettingsScreen SettingsScreen;
     public SelectionScreen SelectionScreen;
     public StartScreen StartScreen;
+    public BillsScreen BillsScreen;
 }
