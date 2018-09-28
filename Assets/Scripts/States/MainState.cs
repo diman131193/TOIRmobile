@@ -19,6 +19,8 @@ public class MainState : BaseState {
     {
         mainScreen.ButtonUpClicked += ButtonUpClicked;
         mainScreen.ButtonDownClicked += ButtonDownClicked;
+        mainScreen.ButtonChartClicked += ButtonChartClicked;
+        mainScreen.ButtonCloseClicked += ButtonCloseClicked;
         base.Load();
 
         if (deviceModel.id == 2)
@@ -45,6 +47,8 @@ public class MainState : BaseState {
         base.Unload();
         mainScreen.ButtonUpClicked -= ButtonUpClicked;
         mainScreen.ButtonDownClicked -= ButtonDownClicked;
+        mainScreen.ButtonChartClicked -= ButtonChartClicked;
+        mainScreen.ButtonCloseClicked -= ButtonCloseClicked;
         GameObject.Destroy(model);
         mainScreen.Hide();
     }
@@ -109,5 +113,17 @@ public class MainState : BaseState {
                 mainScreen.ButtonDown.interactable = false;
             }
         }
+    }
+
+    public void ButtonChartClicked()
+    {
+        mainScreen.ChartPanel.SetActive(true);
+        model.SetActive(false);
+    }
+
+    public void ButtonCloseClicked()
+    {
+        mainScreen.ChartPanel.SetActive(false);
+        model.SetActive(true);
     }
 }
