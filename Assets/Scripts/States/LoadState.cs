@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Helpers;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -21,10 +23,21 @@ public class LoadState : BaseState {
     {
         base.Load();
         loadScreen.Show();
-        loadScreen.StartCoroutine(Timer_Elapsed());
-        //loadScreen.StartCoroutine(GetAssetBundle());
         loadScreen.SetTitle("Загрузка");
+        //loadScreen.StartCoroutine(Timer_Elapsed());
+        AssetBundle bundle = null;
+        loadScreen.StartCoroutine(AssetBundleHelper.GetAssetBundle(ModelId, value => OnGetAssetBundleCompleted(value)));
+
     }
+
+    private void OnGetAssetBundleCompleted(AssetBundle bundle)
+    {
+        var prefab = bundle.LoadAsset<GameObject>("rolik.prefab");
+        deviceModel.Object = prefab;
+        deviceModel.id = 1;
+        signalBus.Fire<MainSceneOpenSignal>();
+    }
+
     //IEnumerator GetAssetBundle()
     //{
     //    UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle("http://10.10.47.201/toir/api/values/getbundle/" + ModelId + "?device=" + Application.platform.ToString()); 

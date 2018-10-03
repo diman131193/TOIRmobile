@@ -23,19 +23,20 @@ public class MainState : BaseState {
         mainScreen.ButtonCloseClicked += ButtonCloseClicked;
         base.Load();
 
-        if (deviceModel.id == 2)
-        {
-            mainScreen.SetTitle("Комбайн МВ-12");
-            model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0, 0, 25), Quaternion.identity);
-            animator = model.GetComponentInChildren<Animator>();
-        } else if (deviceModel.id == 1)
-        {
-            mainScreen.SetTitle("Ролик прокатный");
-            model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/rolik"), new Vector3(0, 0, 25), Quaternion.identity);
-            animator = model.GetComponentInChildren<Animator>();
-        }
+        //if (deviceModel.id == 2)
+        //{
+        //    mainScreen.SetTitle("Комбайн МВ-12");
+        //    model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0, 0, 25), Quaternion.identity);
+        //    animator = model.GetComponentInChildren<Animator>();
+        //} else if (deviceModel.id == 1)
+        //{
+        //    mainScreen.SetTitle("Ролик прокатный");
+        //    model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/rolik"), new Vector3(0, 0, 25), Quaternion.identity);
+        //    animator = model.GetComponentInChildren<Animator>();
+        //}
         ///Модель сервера
-        //model = GameObject.Instantiate(deviceModel.Object);
+        model = GameObject.Instantiate(deviceModel.Object);
+        animator = model.GetComponentInChildren<Animator>();
         //mainScreen.SetTitle(deviceModel.Name);
         mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;

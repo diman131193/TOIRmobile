@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application>
+  <WebService>
+    <AssetBundleServer>http://10.10.47.201/toir/api/values/getbundle/</AssetBundleServer>
+  </WebService>
+</Application>

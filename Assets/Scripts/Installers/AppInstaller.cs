@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections;
 using Zenject;
 using System.Linq;
-
+using Assets.Scripts.Helpers;
 
 public class AppInstaller : MonoInstaller
 {

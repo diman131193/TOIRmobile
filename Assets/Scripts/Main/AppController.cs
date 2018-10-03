@@ -97,6 +97,7 @@ public class AppController : IInitializable, ITickable, IDisposable
     private void OnMainSceneOpen()
     {
         _stateMachine.Unload(false);
+
         _stateMachine.Load(mainState);
     }
 
