@@ -25,6 +25,7 @@ namespace Helpers
                 bundle = DownloadHandlerAssetBundle.GetContent(www);
                 result.Invoke(bundle);
             }
+            www.Dispose();
         }
 
         private static IEnumerator GetWebRequest(UnityWebRequest www, System.Action<AssetBundle> result)

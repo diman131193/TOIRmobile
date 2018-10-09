@@ -9,11 +9,12 @@ public class MainState : BaseState {
     public MainScreen mainScreen { get; private set; }
     [Inject]
     private SignalBus signalBus;
-    [Inject]
-    private DeviceModel deviceModel;
+    
+    public AssetBundle Bundle { get; set; }
 
     private GameObject model;
     private Animator animator;
+    private DeviceModel deviceModel = new DeviceModel();
 
     public override void Load()
     {
@@ -22,7 +23,7 @@ public class MainState : BaseState {
         mainScreen.ButtonChartClicked += ButtonChartClicked;
         mainScreen.ButtonCloseClicked += ButtonCloseClicked;
         base.Load();
-
+        Instantiate();
         //if (deviceModel.id == 2)
         //{
         //    mainScreen.SetTitle("Комбайн МВ-12");
@@ -35,8 +36,7 @@ public class MainState : BaseState {
         //    animator = model.GetComponentInChildren<Animator>();
         //}
         ///Модель сервера
-        model = GameObject.Instantiate(deviceModel.Object);
-        animator = model.GetComponentInChildren<Animator>();
+
         //mainScreen.SetTitle(deviceModel.Name);
         mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
@@ -51,6 +51,7 @@ public class MainState : BaseState {
         mainScreen.ButtonChartClicked -= ButtonChartClicked;
         mainScreen.ButtonCloseClicked -= ButtonCloseClicked;
         GameObject.Destroy(model);
+        Bundle.Unload(true);
         mainScreen.Hide();
     }
 
@@ -114,6 +115,15 @@ public class MainState : BaseState {
                 mainScreen.ButtonDown.interactable = false;
             }
         }
+    }
+
+    private void Instantiate()
+    {
+        var prefab = Bundle.LoadAsset<GameObject>("rolik.prefab");
+        deviceModel.Object = prefab;
+        deviceModel.id = 1;
+        model = GameObject.Instantiate(deviceModel.Object);
+        animator = model.GetComponentInChildren<Animator>();
     }
 
     public void ButtonChartClicked()
