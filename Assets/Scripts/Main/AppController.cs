@@ -94,10 +94,10 @@ public class AppController : IInitializable, ITickable, IDisposable
         _stateMachine.Load(loadState);
     }
 
-    private void OnMainSceneOpen()
+    private void OnMainSceneOpen(MainSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
-
+        mainState.Bundle = signal.bundle;
         _stateMachine.Load(mainState);
     }
 

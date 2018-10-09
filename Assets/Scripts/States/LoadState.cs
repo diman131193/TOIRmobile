@@ -32,10 +32,7 @@ public class LoadState : BaseState {
 
     private void OnGetAssetBundleCompleted(AssetBundle bundle)
     {
-        var prefab = bundle.LoadAsset<GameObject>("rolik.prefab");
-        deviceModel.Object = prefab;
-        deviceModel.id = 1;
-        signalBus.Fire<MainSceneOpenSignal>();
+        signalBus.Fire(new MainSceneOpenSignal() {bundle = bundle});
     }
 
     //IEnumerator GetAssetBundle()
