@@ -32,7 +32,6 @@ public class LoadState : BaseState {
 
     private void OnGetAssetBundleCompleted(AssetBundle bundle)
     {
-<<<<<<< HEAD
         signalBus.Fire(new MainSceneOpenSignal() {bundle = bundle});
 //=======
 //        var prefab = bundle.LoadAsset<GameObject>("rolik.prefab");
