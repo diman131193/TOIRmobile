@@ -1,0 +1,51 @@
+ManifestFileVersion: 0
+CRC: 3778861807
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 97cd97a2caeb814fd2df050f6197407b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bc713cadab85f87a59b8f3f6f24009f2
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 319
+  Script: {instanceID: 0}
+Assets:
+- "Assets/Test/\u0440\u043E\u043B\u0438\u043A 01.controller"
+- Assets/Test/rol_6.anim
+- Assets/Test/rolik.prefab
+- Assets/Test/rol_7.mask
+- Assets/Test/rol_2.mask
+- Assets/Test/rol_4.anim
+- Assets/Test/rol_6.mask
+- Assets/Test/rol_5.anim
+- Assets/Test/rol_3.mask
+- Assets/Test/rol_3.anim
+- Assets/Test/rol_2.anim
+- Assets/Test/rol_5.mask
+- Assets/Test/rol_0.anim
+- Assets/Test/rol_1.anim
+- "Assets/Test/\u0440\u043E\u043B\u0438\u043A 01.FBX"
+- Assets/Test/rol_4.mask
+Dependencies: []
