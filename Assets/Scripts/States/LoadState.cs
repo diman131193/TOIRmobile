@@ -33,6 +33,7 @@ public class LoadState : BaseState {
     private void OnGetAssetBundleCompleted(AssetBundle bundle)
     {
         var prefab = bundle.LoadAsset<GameObject>("rolik.prefab");
+        prefab.transform.position = new Vector3(6.5f, 0.0f, 20.0f);
         deviceModel.Object = prefab;
         deviceModel.id = 1;
         signalBus.Fire<MainSceneOpenSignal>();
