@@ -14,6 +14,7 @@ public class MainState : BaseState {
 
     private GameObject model;
     private Animator animator;
+    
     private DeviceModel deviceModel = new DeviceModel();
 
     public override void Load()
@@ -62,12 +63,13 @@ public class MainState : BaseState {
         mainScreen.ButtonDown.interactable = true;
         if (deviceModel.id == 1)
         {
-            if (currentState < 6)
+            
+            if (currentState < 2)
             {
                 animator.SetInteger("state", currentState + 1);
-                mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+                mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". Открутить болты и снять наружнюю крышку с подшипниковой опоры.\nИнструменты: Ключ гаечный №18, зубило, молоток.";
             }
-            if (currentState + 1 == 6)
+            if (currentState + 1 == 2)
             {
                 mainScreen.ButtonUp.interactable = false;
             }
@@ -93,10 +95,15 @@ public class MainState : BaseState {
         mainScreen.ButtonUp.interactable = true;
         if (deviceModel.id == 1)
         {
-            if (currentState > 0)
+            if (currentState > 1)
             {
                 animator.SetInteger("state", currentState - 1);
                 mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+            }
+            if (currentState == 1)
+            {
+                animator.SetInteger("state", currentState - 1);
+                mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
             }
             if (currentState - 1 == 0)
             {

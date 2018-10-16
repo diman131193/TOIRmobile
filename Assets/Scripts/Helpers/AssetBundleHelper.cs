@@ -13,7 +13,12 @@ namespace Helpers
 
         public static IEnumerator GetAssetBundle(int model_id, System.Action<AssetBundle> result)
         {
-            UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle(ConfigurationManager.GetComponent("AssetBundleServer") + model_id + "?device=" + Application.platform.ToString());
+            string address = null;//ConfigurationManager.GetComponent("AssetBundleServer"); не работает на устройстве....
+            if (address == null)
+            {
+                address = @"http://10.10.47.201/toir/api/values/getbundle/";
+            }
+            UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle(address + model_id + "?device=" + Application.platform.ToString());
             yield return www.SendWebRequest();
             AssetBundle bundle = null;
             if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
