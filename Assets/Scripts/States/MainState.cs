@@ -98,7 +98,7 @@ public class MainState : BaseState {
             if (currentState > 1)
             {
                 animator.SetInteger("state", currentState - 1);
-                mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+                mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". Открутить болты и снять наружнюю крышку с подшипниковой опоры.\nИнструменты: Ключ гаечный №18, зубило, молоток.";
             }
             if (currentState == 1)
             {
@@ -129,6 +129,7 @@ public class MainState : BaseState {
         var prefab = Bundle.LoadAsset<GameObject>("rolik.prefab");
         deviceModel.Object = prefab;
         deviceModel.id = 1;
+        mainScreen.SetTitle("Ролик прокатный");
         model = GameObject.Instantiate(deviceModel.Object);
         animator = model.GetComponentInChildren<Animator>();
     }

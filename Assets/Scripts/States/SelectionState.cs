@@ -56,7 +56,7 @@ public class SelectionState : BaseState {
         sections1[1] = new SectionModel();
         sections1[1].Id = 1;
         sections1[1].Name = "Участок стана горячей прокатки 9511";
-        sections1[1].Objects = new DeviceModel[] { new DeviceModel() { Name = "Ролик прокатный 1", id = 1 }, new DeviceModel() { Name = "Комбайн МВ-12", id = 2 } };
+        sections1[1].Objects = new DeviceModel[] { new DeviceModel() { Name = "Ролик прокатный 1", id = 1 } /*, new DeviceModel() { Name = "Комбайн МВ-12", id = 2 } */};
 
         sections1[2] = new SectionModel();
         sections1[2].Id = 2;
