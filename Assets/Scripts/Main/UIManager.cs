@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public ShopSelectionScreen ShopSelectionScreen;
+    public SectorSelectionScreen SectorSelectionScreen;
+    public UnitSelectionScreen UnitSelectionScreen;
+    public NodeSelectionScreen NodeSelectionScreen;
+    public AssemlingSelectionScreen AssemlingSelectionScreen;
+
     public Layout Layout;
     public MainScreen MainScreen;
     public LoadScreen LoadScreen;
