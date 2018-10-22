@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     public SectorSelectionScreen SectorSelectionScreen;
     public UnitSelectionScreen UnitSelectionScreen;
     public NodeSelectionScreen NodeSelectionScreen;
-    public AssemlingSelectionScreen AssemlingSelectionScreen;
+    public AssemblingSelectionScreen AssemblingSelectionScreen;
 
     public Layout Layout;
     public MainScreen MainScreen;

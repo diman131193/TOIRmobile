@@ -26,7 +26,7 @@ public class AppInstaller : MonoInstaller
         Container.Bind<SectorSelectionState>().AsSingle();
         Container.Bind<UnitSelectionState>().AsSingle();
         Container.Bind<NodeSelectionState>().AsSingle();
-        Container.Bind<AssemlingSelectionState>().AsSingle();
+        Container.Bind<AssemblingSelectionState>().AsSingle();
 
         Container.Bind<MainState>().AsSingle();
         Container.Bind<LoadState>().AsSingle();
@@ -42,7 +42,7 @@ public class AppInstaller : MonoInstaller
         Container.Bind<SectorSelectionScreen>().FromInstance(_uiManager.SectorSelectionScreen).AsSingle();
         Container.Bind<UnitSelectionScreen>().FromInstance(_uiManager.UnitSelectionScreen).AsSingle();
         Container.Bind<NodeSelectionScreen>().FromInstance(_uiManager.NodeSelectionScreen).AsSingle();
-        Container.Bind<AssemlingSelectionScreen>().FromInstance(_uiManager.AssemlingSelectionScreen).AsSingle();
+        Container.Bind<AssemblingSelectionScreen>().FromInstance(_uiManager.AssemblingSelectionScreen).AsSingle();
 
         Container.Bind<Layout>().FromInstance(_uiManager.Layout).AsSingle();
         Container.Bind<MainScreen>().FromInstance(_uiManager.MainScreen).AsSingle();

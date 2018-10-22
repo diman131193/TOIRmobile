@@ -39,7 +39,7 @@ public class StartState : BaseState
 
     public void OnStartClicked()
     {
-        signalBus.Fire<SelectionSceneOpenSignal>();
+        signalBus.Fire<ShopSceneOpenSignal>();
     }
 
     private void OnBillsClicked()

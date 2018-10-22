@@ -17,6 +17,19 @@ public class AppController : IInitializable, ITickable, IDisposable
     private readonly StateMachine _stateMachine;
 
     [Inject]
+    private ShopSelectionState shopState;
+    [Inject]
+    private SectorSelectionState sectorState;
+    [Inject]
+    private UnitSelectionState unitState;
+    [Inject]
+    private NodeSelectionState nodeState;
+    [Inject]
+    private AssemblingSelectionState assemblingState;
+
+
+
+    [Inject]
     private MainState mainState;
     [Inject]
     private LoadState loadState;
@@ -47,6 +60,12 @@ public class AppController : IInitializable, ITickable, IDisposable
 
     public void Initialize()
     {
+        _signalBus.Subscribe<ShopSceneOpenSignal>(OnShopSceneOpen);
+        _signalBus.Subscribe<SectorSceneOpenSignal>(OnSectorSceneOpen);
+        _signalBus.Subscribe<UnitSceneOpenSignal>(OnUnitSceneOpen);
+        _signalBus.Subscribe<NodeSceneOpenSignal>(OnNodeSceneOpen);
+        _signalBus.Subscribe<AssemblingSceneOpenSignal>(OnAssemblingSceneOpen);
+
         _signalBus.Subscribe<MainSceneOpenSignal>(OnMainSceneOpen);
         _signalBus.Subscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
         _signalBus.Subscribe<SettingsSceneOpenSignal>(OnSettingsSceneOpen);
@@ -55,6 +74,36 @@ public class AppController : IInitializable, ITickable, IDisposable
         _signalBus.Subscribe<BillsSceneOpenSignal>(OnBillsSceneOpen);
         _signalBus.Subscribe<BackButtonPressedSignal>(OnBackButtonPressed);
         _signalBus.Fire<StartSceneOpenSignal>();
+    }
+
+    private void OnShopSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(shopState);
+    }
+
+    private void OnSectorSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(sectorState);
+    }
+
+    private void OnUnitSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(unitState);
+    }
+
+    private void OnNodeSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(nodeState);
+    }
+
+    private void OnAssemblingSceneOpen()
+    {
+        _stateMachine.Unload(false);
+        _stateMachine.Load(assemblingState);
     }
 
     private void OnBillsSceneOpen()
@@ -103,6 +152,12 @@ public class AppController : IInitializable, ITickable, IDisposable
 
     public void Dispose()
     {
+        _signalBus.Unsubscribe<ShopSceneOpenSignal>(OnShopSceneOpen);
+        _signalBus.Unsubscribe<SectorSceneOpenSignal>(OnSectorSceneOpen);
+        _signalBus.Unsubscribe<UnitSceneOpenSignal>(OnUnitSceneOpen);
+        _signalBus.Unsubscribe<NodeSceneOpenSignal>(OnNodeSceneOpen);
+        _signalBus.Unsubscribe<AssemblingSceneOpenSignal>(OnAssemblingSceneOpen);
+
         _signalBus.Unsubscribe<MainSceneOpenSignal>(OnMainSceneOpen);
         _signalBus.Unsubscribe<LoadSceneOpenSignal>(OnLoadSceneOpen);
         _signalBus.Unsubscribe<SettingsSceneOpenSignal>(OnSettingsSceneOpen);

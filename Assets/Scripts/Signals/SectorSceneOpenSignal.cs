@@ -6,5 +6,11 @@ using System.Threading.Tasks;
 
 struct SectorSceneOpenSignal
 {
+    private string Id;
+
+    public SectorSceneOpenSignal(string id)
+    {
+        this.Id = id;
+    }
 }
 
