@@ -47,6 +47,6 @@ public class AssemblingSelectionState : BaseState {
 
     private void OnAssemblingButtonClicked(CustomButton button)
     {
-        //signalBus.Fire(new AssemblingSceneOpenSignal(button.getId(), button.getName()));
+        signalBus.Fire(new LoadSceneOpenSignal(1));
     }
 }
