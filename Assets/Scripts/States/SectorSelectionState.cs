@@ -18,7 +18,7 @@ public class SectorSelectionState : BaseState {
 
     private SectorModel[] dataModel;
 
-    SectorModel[] GetShops()
+    SectorModel[] GetSectors()
     {
         SectorModel[] tmpSector = new SectorModel[10];
         for (int i = 0; i < 10; i++)
@@ -31,7 +31,7 @@ public class SectorSelectionState : BaseState {
     public override void Load()
     {
         base.Load();
-        dataModel = GetShops();
+        dataModel = GetSectors();
         sectorSelectionScreen.SetTitle(Name);
         sectorSelectionScreen.SectorButtonClicked += OnSectorButtonClicked;
         sectorSelectionScreen.RenderScreenContent(dataModel);

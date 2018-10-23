@@ -90,21 +90,27 @@ public class AppController : IInitializable, ITickable, IDisposable
         _stateMachine.Load(sectorState);
     }
 
-    private void OnUnitSceneOpen()
+    private void OnUnitSceneOpen(UnitSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        unitState.Id = signal.getId();
+        unitState.Name = signal.getName();
         _stateMachine.Load(unitState);
     }
 
-    private void OnNodeSceneOpen()
+    private void OnNodeSceneOpen(NodeSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        nodeState.Id = signal.getId();
+        nodeState.Name = signal.getName();
         _stateMachine.Load(nodeState);
     }
 
-    private void OnAssemblingSceneOpen()
+    private void OnAssemblingSceneOpen(AssemblingSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        assemblingState.Id = signal.getId();
+        assemblingState.Name = signal.getName();
         _stateMachine.Load(assemblingState);
     }
 
