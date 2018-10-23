@@ -14,6 +14,11 @@ public class SectorSelectionScreen : BaseScreen
 
     public void RenderScreenContent(SectorModel[] sectors)
     {
+        foreach (Transform child in SectorView.content)
+        {
+            Destroy(child.gameObject);
+        }
+        
         for (int i = 0; i < sectors.Length; i++)
         {
             var instance = GameObject.Instantiate(ButtonPrefab.gameObject) as GameObject;
