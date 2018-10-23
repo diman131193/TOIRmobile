@@ -120,7 +120,7 @@ public class SelectionState : BaseState {
 
     private void ObjectTglGroup_Change(Toggle obj)
     {
-        signalBus.Fire(new LoadSceneOpenSignal() { id = ((CustomToggle)obj).Id });
+        signalBus.Fire(new LoadSceneOpenSignal(((CustomToggle)obj).Id, "Ролик прокатный 1" ));
     }
 
     private void SectionTglGroup_Change(Toggle obj)

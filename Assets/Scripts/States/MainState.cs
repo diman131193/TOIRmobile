@@ -11,6 +11,8 @@ public class MainState : BaseState {
     private SignalBus signalBus;
     
     public AssetBundle Bundle { get; set; }
+    public int Id;
+    public string Name;
 
     private GameObject model;
     private Animator animator;
@@ -128,8 +130,8 @@ public class MainState : BaseState {
     {
         var prefab = Bundle.LoadAsset<GameObject>("rolik.prefab");
         deviceModel.Object = prefab;
-        deviceModel.id = 1;
-        mainScreen.SetTitle("Ролик прокатный");
+        deviceModel.id = Id;
+        mainScreen.SetTitle(Name);
         model = GameObject.Instantiate(deviceModel.Object);
         animator = model.GetComponentInChildren<Animator>();
     }

@@ -16,6 +16,7 @@ public class LoadState : BaseState {
     private DeviceModel deviceModel;
 
     public int ModelId { get; set; }
+    public string Name;
 
     private int time = 3;
 
@@ -32,7 +33,7 @@ public class LoadState : BaseState {
 
     private void OnGetAssetBundleCompleted(AssetBundle bundle)
     {
-        signalBus.Fire(new MainSceneOpenSignal() {bundle = bundle});
+        signalBus.Fire(new MainSceneOpenSignal(bundle, ModelId, Name));
     }
 
     //IEnumerator GetAssetBundle()

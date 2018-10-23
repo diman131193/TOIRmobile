@@ -147,14 +147,17 @@ public class AppController : IInitializable, ITickable, IDisposable
     private void OnLoadSceneOpen(LoadSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
-        loadState.ModelId = signal.id;
+        loadState.ModelId = signal.getId();
+        loadState.Name = signal.getName();
         _stateMachine.Load(loadState);
     }
 
     private void OnMainSceneOpen(MainSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
-        mainState.Bundle = signal.bundle;
+        mainState.Bundle = signal.getBundle();
+        mainState.Id = signal.getId();
+        mainState.Name = signal.getName();
         _stateMachine.Load(mainState);
     }
 
