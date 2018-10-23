@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public struct LoadSceneOpenSignal {
+
     private int Id;
     private string Name;
 
