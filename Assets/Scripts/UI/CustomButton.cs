@@ -11,8 +11,14 @@ public class CustomButton : Button {
     {
         this.Id = id;
     }
+
     public string getId()
     {
         return this.Id;
+    }
+
+    public string getName()
+    {
+        return this.transform.Find("Label").GetComponent<Text>().text;
     }
 }

@@ -82,9 +82,11 @@ public class AppController : IInitializable, ITickable, IDisposable
         _stateMachine.Load(shopState);
     }
 
-    private void OnSectorSceneOpen()
+    private void OnSectorSceneOpen(SectorSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        sectorState.Id = signal.getId();
+        sectorState.Name = signal.getName();
         _stateMachine.Load(sectorState);
     }
 

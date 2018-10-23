@@ -28,7 +28,7 @@ public class ShopSelectionState : BaseState {
     {
         base.Load();
         dataModel = GetShops();
-
+        shopSelectionScreen.SetTitle("ТЧМС");
         shopSelectionScreen.ShopButtonClicked += OnShopButtonClicked;
         shopSelectionScreen.RenderScreenContent(dataModel);
                
@@ -43,6 +43,6 @@ public class ShopSelectionState : BaseState {
 
     private void OnShopButtonClicked(CustomButton button)
     {
-        signalBus.Fire(new SectorSceneOpenSignal(button.getId()));
+        signalBus.Fire(new SectorSceneOpenSignal(button.getId(), button.getName()));
     }
 }
