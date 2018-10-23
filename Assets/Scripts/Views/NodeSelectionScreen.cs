@@ -14,6 +14,11 @@ public class NodeSelectionScreen : BaseScreen
 
     public void RenderScreenContent(NodeModel[] nodes)
     {
+        foreach (Transform child in NodeView.content)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < nodes.Length; i++)
         {
             var instance = GameObject.Instantiate(ButtonPrefab.gameObject) as GameObject;

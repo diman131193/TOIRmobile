@@ -14,6 +14,11 @@ public class AssemblingSelectionScreen : BaseScreen
 
     public void RenderScreenContent(AssemblingModel[] assemblings)
     {
+        foreach (Transform child in AssemblingView.content)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < assemblings.Length; i++)
         {
             var instance = GameObject.Instantiate(ButtonPrefab.gameObject) as GameObject;

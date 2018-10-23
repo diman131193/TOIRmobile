@@ -14,6 +14,11 @@ public class UnitSelectionScreen : BaseScreen
 
     public void RenderScreenContent(UnitModel[] units)
     {
+        foreach (Transform child in UnitView.content)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < units.Length; i++)
         {
             var instance = GameObject.Instantiate(ButtonPrefab.gameObject) as GameObject;
