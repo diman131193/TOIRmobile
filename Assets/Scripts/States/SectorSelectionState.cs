@@ -34,6 +34,7 @@ public class SectorSelectionState : BaseState {
         dataModel = GetSectors();
         sectorSelectionScreen.SetTitle(Name);
         sectorSelectionScreen.SectorButtonClicked += OnSectorButtonClicked;
+
         sectorSelectionScreen.RenderScreenContent(dataModel);
 
         sectorSelectionScreen.Show();
