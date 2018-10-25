@@ -133,6 +133,11 @@ public class MainState : BaseState {
         deviceModel.id = Id;
         mainScreen.SetTitle(Name);
         model = GameObject.Instantiate(deviceModel.Object);
+        model.layer = 13;
+        foreach(Transform child in model.GetComponentInChildren<Transform>())
+        {
+            child.gameObject.layer = 13;
+        }
         animator = model.GetComponentInChildren<Animator>();
     }
 
