@@ -1,7 +1,27 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public struct SelectionSceneOpenSignal
+struct SelectionSceneOpenSignal
 {
+    private string Id;
+    private string Name;
+
+    public SelectionSceneOpenSignal(string id, string name)
+    {
+        this.Id = id;
+        this.Name = name;
+    }
+
+    public string getId()
+    {
+        return this.Id;
+    }
+
+    public string getName()
+    {
+        return this.Name;
+    }
 }

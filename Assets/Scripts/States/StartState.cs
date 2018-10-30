@@ -39,7 +39,7 @@ public class StartState : BaseState
 
     public void OnStartClicked()
     {
-        signalBus.Fire<ShopSceneOpenSignal>();
+        signalBus.Fire(new SelectionSceneOpenSignal("", "ЛПК"));
     }
 
     private void OnBillsClicked()

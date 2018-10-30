@@ -138,9 +138,11 @@ public class AppController : IInitializable, ITickable, IDisposable
         _stateMachine.Load(settingsState);
     }
 
-    private void OnSelectionSceneOpen()
+    private void OnSelectionSceneOpen(SelectionSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        selectionState.Id = signal.getId();
+        selectionState.Name = signal.getName();
         _stateMachine.Load(selectionState);
     }
 
