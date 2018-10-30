@@ -1206,3 +1206,5 @@ C:\Users\markin\Documents\GitHub\TOIRmobile\obj\Debug\Zenject.csproj.CoreCompile
 C:\Users\markin\Documents\GitHub\TOIRmobile\obj\Debug\Zenject.csproj.CopyComplete
 C:\Users\markin\Documents\GitHub\TOIRmobile\obj\Debug\Zenject.dll
 C:\Users\markin\Documents\GitHub\TOIRmobile\obj\Debug\Zenject.pdb
+C:\Users\ulyanov\Desktop\ToirMobile\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll
+C:\Users\ulyanov\Desktop\ToirMobile\TOIRmobile\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml

@@ -44,6 +44,7 @@ public class SelectionState : BaseState
     public override void Unload()
     {
         base.Unload();
+        selectionScreen.SelectionButtonClicked -= OnSelectionButtonClicked;
         selectionScreen.Hide();
     }
 
