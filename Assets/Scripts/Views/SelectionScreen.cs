@@ -13,8 +13,23 @@ public class SelectionScreen : BaseScreen
     [SerializeField]
     public Button _3D;
 
+    [SerializeField]
+    public Button _2D;
+
+    [SerializeField]
+    public GameObject ChartPanel;
+
+    [SerializeField]
+    public GameObject SelectionPanel;
+
+    public bool ChartPanelOpen = false;
+    private RectTransform rectChartPanel;
+    private RectTransform rectSelectionPanel;
+    public float speed = 5f;
+
     public event Action<CustomButton> SelectionButtonClicked = delegate { };
     public event Action _3DButtonClicked = delegate { };
+    public event Action _2DButtonClicked = delegate { };
 
     void Start()
     {
@@ -22,9 +37,33 @@ public class SelectionScreen : BaseScreen
         {
             _3DButtonClicked();
         });
+
+        _2D.onClick.AddListener(() =>
+        {
+            _2DButtonClicked();
+        });
+
+        rectChartPanel = ChartPanel.GetComponent<RectTransform>();
+        rectSelectionPanel = SelectionPanel.GetComponent<RectTransform>();
     }
 
-        public void RenderScreenContent(SelectionModel[] selections)
+    private void Update()
+    {
+        if (ChartPanelOpen && rectChartPanel.offsetMin.x != 10)
+        {
+            rectChartPanel.offsetMin += new Vector2(speed, 0);
+            rectChartPanel.offsetMax += new Vector2(speed, 0);
+            rectSelectionPanel.offsetMin += new Vector2(speed, 0);
+        }
+        if (!ChartPanelOpen && rectChartPanel.offsetMax.x != 0)
+        {
+            rectChartPanel.offsetMin -= new Vector2(speed, 0);
+            rectChartPanel.offsetMax -= new Vector2(speed, 0);
+            rectSelectionPanel.offsetMin -= new Vector2(speed, 0);
+        }
+    }
+
+    public void RenderScreenContent(SelectionModel[] selections)
     {
         foreach (Transform child in SelectionView.content)
         {
