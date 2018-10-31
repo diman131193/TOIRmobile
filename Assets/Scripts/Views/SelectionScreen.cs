@@ -10,9 +10,21 @@ public class SelectionScreen : BaseScreen
     [SerializeField]
     public ScrollRect SelectionView;
 
-    public event Action<CustomButton> SelectionButtonClicked = delegate { };
+    [SerializeField]
+    public Button _3D;
 
-    public void RenderScreenContent(SelectionModel[] selections)
+    public event Action<CustomButton> SelectionButtonClicked = delegate { };
+    public event Action _3DButtonClicked = delegate { };
+
+    void Start()
+    {
+        _3D.onClick.AddListener(() =>
+        {
+            _3DButtonClicked();
+        });
+    }
+
+        public void RenderScreenContent(SelectionModel[] selections)
     {
         foreach (Transform child in SelectionView.content)
         {

@@ -35,7 +35,7 @@ public class SelectionState : BaseState
         dataModel = GetSelections();
         selectionScreen.SetTitle(Name);
         selectionScreen.SelectionButtonClicked += OnSelectionButtonClicked;
-
+        selectionScreen._3DButtonClicked += On_3DButtonClicked;
         selectionScreen.RenderScreenContent(dataModel);
 
         selectionScreen.Show();
@@ -51,6 +51,11 @@ public class SelectionState : BaseState
     private void OnSelectionButtonClicked(CustomButton button)
     {
         signalBus.Fire(new SelectionSceneOpenSignal(button.getId(), button.getName()));
+    }
+
+    private void On_3DButtonClicked()
+    {
+        signalBus.Fire(new LoadSceneOpenSignal(1, "Ролик прокатный 1"));
     }
 
 }
