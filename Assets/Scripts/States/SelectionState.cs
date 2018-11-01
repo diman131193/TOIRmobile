@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using Zenject;
 
 public class SelectionState : BaseState
@@ -66,16 +67,12 @@ public class SelectionState : BaseState
         if (Count_2DClick % 2 == 1)
         {
             selectionScreen.ChartPanelOpen = true;
-            ColorBlock cb = selectionScreen._2D.colors;
-            cb.normalColor = new Color(200f, 200f, 200f, 255f);
-            selectionScreen._2D.colors = cb;
+            selectionScreen._2D.gameObject.GetComponent<Image>().color = new Color32(220, 220, 220, 255);
         }
         else
         {
             selectionScreen.ChartPanelOpen = false;
-            ColorBlock cb = selectionScreen._2D.colors;
-            cb.normalColor = new Color(255f, 255f, 255f, 255f);
-            selectionScreen._2D.colors = cb;
+            selectionScreen._2D.gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
     }
 
