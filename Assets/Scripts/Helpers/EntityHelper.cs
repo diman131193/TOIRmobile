@@ -18,6 +18,7 @@ namespace Helpers
             public static T[] FromJson<T>(string json)
             {
                 Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+                Debug.Log(wrapper);
                 return wrapper.Items;
             }
 
@@ -55,7 +56,7 @@ namespace Helpers
             UnityWebRequest www = UnityWebRequest.Get(address);
             yield return www.SendWebRequest();
 
-            SelectionModel[] res;
+            //SelectionModel[] res;
 
             if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
             {
@@ -64,7 +65,8 @@ namespace Helpers
             else
             {
                 Debug.Log(www.downloadHandler.text);
-                res = JsonHelper.FromJson<SelectionModel>("{\"Items\":" + www.downloadHandler.text + "}");
+                Debug.Log("{\"Items\":" + www.downloadHandler.text + "}");
+                SelectionModel[] res = JsonHelper.FromJson<SelectionModel>("{\"Items\":" + www.downloadHandler.text + "}");
                 Debug.Log(res);
                 result.Invoke(res);
             }

@@ -1,4 +1,7 @@
-﻿public class SelectionModel
+﻿using System;
+
+[Serializable]
+public class SelectionModel
 {
     public string ID;
     public string DESCRIPTIVE_TEXT;
