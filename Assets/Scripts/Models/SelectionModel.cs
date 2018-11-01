@@ -1,22 +1,22 @@
 ﻿public class SelectionModel
 {
-    private string Id;
-    private string Name;
+    public string ID;
+    public string DESCRIPTIVE_TEXT;
     
     public SelectionModel(string id, string name)
     {
-        this.Id = id;
-        this.Name = name;      
+        this.ID = id;
+        this.DESCRIPTIVE_TEXT = name;      
     }
 
     public string getId()
     {
-        return this.Id;
+        return this.ID;
     }
 
     public string getName()
     {
-        return this.Name;
+        return this.DESCRIPTIVE_TEXT;
     }
 }
 

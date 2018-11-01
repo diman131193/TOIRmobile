@@ -18,27 +18,38 @@ public class SelectionState : BaseState
 
     private SelectionModel[] dataModel;
 
-    SelectionModel[] GetSelections()
+    void GetSelections(SelectionModel[] res)
     {
-        SelectionModel[] tmpSelection = new SelectionModel[10];
-        for (int i = 0; i < 10; i++)
+        //SelectionModel[] tmpSelection = new SelectionModel[10];
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    tmpSelection[i] = new SelectionModel("" + i, "Selection" + Id + "_" + i);
+        //}
+
+        //return tmpSelection;
+        Debug.Log(res);
+        foreach (var elem in res)
         {
-            tmpSelection[i] = new SelectionModel("" + i, "Selection" + Id + "_" + i);
+            Debug.Log(elem.getId());
         }
-        return tmpSelection;
+        selectionScreen.RenderScreenContent(res);
+
+        
     }
 
     public override void Load()
     {
         base.Load();
-        dataModel = GetSelections();
+        //dataModel = GetSelections();
         selectionScreen.SetTitle(Name);
         selectionScreen.SelectionButtonClicked += OnSelectionButtonClicked;
         selectionScreen._3DButtonClicked += On_3DButtonClicked;
         selectionScreen._2DButtonClicked += On_2DButtonClicked;
-        selectionScreen.RenderScreenContent(dataModel);
-
         selectionScreen.Show();
+        selectionScreen.StartCoroutine(Helpers.EntityHelper.getEntityList("31", value => GetSelections(value)));
+        //selectionScreen.RenderScreenContent(dataModel);
+
+        //selectionScreen.Show();
     }
 
     public override void Unload()
