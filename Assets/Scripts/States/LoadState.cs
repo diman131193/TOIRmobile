@@ -18,7 +18,7 @@ public class LoadState : BaseState {
     public int ModelId { get; set; }
     public string Name;
 
-    private int time = 3;
+    //private int time = 3;
 
     public override void Load()
     {
@@ -26,7 +26,7 @@ public class LoadState : BaseState {
         loadScreen.Show();
         loadScreen.SetTitle("Загрузка");
         //loadScreen.StartCoroutine(Timer_Elapsed());
-        AssetBundle bundle = null;
+        //AssetBundle bundle = null;
         loadScreen.StartCoroutine(AssetBundleHelper.GetAssetBundle(ModelId, value => OnGetAssetBundleCompleted(value)));
 
     }

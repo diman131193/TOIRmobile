@@ -40,13 +40,13 @@ public class SelectionState : BaseState
     public override void Load()
     {
         base.Load();
-        //dataModel = GetSelections();
+        selectionScreen.ClearEntity();
         selectionScreen.SetTitle(Name);
         selectionScreen.SelectionButtonClicked += OnSelectionButtonClicked;
         selectionScreen._3DButtonClicked += On_3DButtonClicked;
         selectionScreen._2DButtonClicked += On_2DButtonClicked;
         selectionScreen.Show();
-        selectionScreen.StartCoroutine(Helpers.EntityHelper.getEntityList("31", value => GetSelections(value)));
+        selectionScreen.StartCoroutine(Helpers.EntityHelper.getEntityList(Id, value => GetSelections(value)));
         //selectionScreen.RenderScreenContent(dataModel);
 
         //selectionScreen.Show();

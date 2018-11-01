@@ -18,7 +18,6 @@ public class StartState : BaseState
         base.Load();
         startScreen.StartClicked += OnStartClicked;
         startScreen.SettingsClicked += OnSettingsClicked;
-        startScreen.BillsClicked += OnBillsClicked;
         startScreen.SetTitle("ТОиР");
         startScreen.Show();
     }
@@ -39,13 +38,6 @@ public class StartState : BaseState
 
     public void OnStartClicked()
     {
-        signalBus.Fire(new SelectionSceneOpenSignal("", "ЛПК"));
+        signalBus.Fire(new SelectionSceneOpenSignal("31", "Тулачермет-Сталь"));
     }
-
-    private void OnBillsClicked()
-    {
-        signalBus.Fire<BillsSceneOpenSignal>();
-    }
-
-
 }

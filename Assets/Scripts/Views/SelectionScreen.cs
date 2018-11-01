@@ -63,13 +63,16 @@ public class SelectionScreen : BaseScreen
         }
     }
 
-    public void RenderScreenContent(SelectionModel[] selections)
+    public void ClearEntity()
     {
         foreach (Transform child in SelectionView.content)
         {
             Destroy(child.gameObject);
         }
+    }
 
+    public void RenderScreenContent(SelectionModel[] selections)
+    {
         for (int i = 0; i < selections.Length; i++)
         {
             var instance = GameObject.Instantiate(ButtonPrefab.gameObject) as GameObject;

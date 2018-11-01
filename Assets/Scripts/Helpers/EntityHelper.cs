@@ -1,9 +1,7 @@
 ﻿using System.Runtime.Serialization;
-using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Helpers;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Zenject;
