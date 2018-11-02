@@ -20,21 +20,7 @@ public class SelectionState : BaseState
 
     void GetSelections(SelectionModel[] res)
     {
-        //SelectionModel[] tmpSelection = new SelectionModel[10];
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    tmpSelection[i] = new SelectionModel("" + i, "Selection" + Id + "_" + i);
-        //}
-
-        //return tmpSelection;
-        Debug.Log(res);
-        foreach (var elem in res)
-        {
-            Debug.Log(elem.getId());
-        }
-        selectionScreen.RenderScreenContent(res);
-
-        
+        selectionScreen.RenderScreenContent(res); 
     }
 
     public override void Load()

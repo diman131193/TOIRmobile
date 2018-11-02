@@ -9,17 +9,22 @@ public class Layout : MonoBehaviour
     [SerializeField]
     private Button homeButton;
     [SerializeField]
+    private Button backButton;
+    [SerializeField]
     private Text titleText;
     [Inject]
     private SignalBus signalBus;
 
     void Start()
     {
-        //homeButton = GetComponentInChildren<Button>();
-        //titleText = GetComponentsInChildren<Text>().Where(x => x.name == "TitleText").FirstOrDefault();
         homeButton.onClick.AddListener(() =>
         {
             signalBus.Fire<StartSceneOpenSignal>();
+        });
+
+        backButton.onClick.AddListener(() =>
+        {
+            signalBus.Fire<BackButtonPressedSignal>();
         });
     }
 
