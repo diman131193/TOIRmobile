@@ -35,7 +35,7 @@ public class StateMachine : IStateMachine
     {
         if (stateStack.Count == 0)
             return;
-        if (backButton && (stateStack.Count == 0 || currentState is StartScreen))
+        if (backButton && (stateStack.Count == 1 || currentState is StartState))
         {
             AppQuit();
         }

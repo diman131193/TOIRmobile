@@ -4,7 +4,7 @@ using System.Collections;
 using Zenject;
 using System;
 
-public class SelectionState : BaseState, IDisposable
+public class SelectionState : BaseState
 {
 
     public string Id;
@@ -28,15 +28,15 @@ public class SelectionState : BaseState, IDisposable
     {
         base.Load();
         selectionScreen.ClearEntity();
+        Count_2DClick = 0;
+        selectionScreen.ChartPanelOpen = false;
+        selectionScreen._2D.gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         selectionScreen.SetTitle(Name);
         selectionScreen.SelectionButtonClicked += OnSelectionButtonClicked;
         selectionScreen._3DButtonClicked += On_3DButtonClicked;
         selectionScreen._2DButtonClicked += On_2DButtonClicked;
         selectionScreen.Show();
         selectionScreen.StartCoroutine(Helpers.EntityHelper.getEntityList(Id, value => GetSelections(value)));
-        //selectionScreen.RenderScreenContent(dataModel);
-
-        //selectionScreen.Show();
     }
 
     public override void Unload()
@@ -72,10 +72,5 @@ public class SelectionState : BaseState, IDisposable
             selectionScreen.ChartPanelOpen = false;
             selectionScreen._2D.gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
-    }
-
-    public void Dispose()
-    {
-        throw new NotImplementedException();
     }
 }
