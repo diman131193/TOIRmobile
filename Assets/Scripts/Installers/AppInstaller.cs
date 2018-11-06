@@ -25,7 +25,6 @@ public class AppInstaller : MonoInstaller
         Container.Bind<MainState>().AsSingle();
         Container.Bind<LoadState>().AsSingle();
         Container.Bind<SettingsState>().AsSingle();
-        Container.Bind<SelectionState>().AsSingle();
         Container.Bind<StartState>().AsSingle();
     }
 

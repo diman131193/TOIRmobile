@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 using Zenject;
+using System;
 
-public class SelectionState : BaseState
+public class SelectionState : BaseState, IDisposable
 {
 
     public string Id;
@@ -14,7 +15,7 @@ public class SelectionState : BaseState
     [Inject]
     public SelectionScreen selectionScreen;
     [Inject]
-    private SignalBus signalBus;
+    public SignalBus signalBus;
 
     private SelectionModel[] dataModel;
 
@@ -73,4 +74,8 @@ public class SelectionState : BaseState
         }
     }
 
+    public void Dispose()
+    {
+        throw new NotImplementedException();
+    }
 }

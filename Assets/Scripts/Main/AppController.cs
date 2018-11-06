@@ -27,6 +27,8 @@ public class AppController : IInitializable, ITickable, IDisposable
     private SettingsState settingsState;
 
     [Inject]
+    public SelectionScreen selectionScreen;
+
     private SelectionState selectionState;
 
     GameStates _state = GameStates.WaitingToStart;
@@ -74,6 +76,9 @@ public class AppController : IInitializable, ITickable, IDisposable
     private void OnSelectionSceneOpen(SelectionSceneOpenSignal signal)
     {
         _stateMachine.Unload(false);
+        selectionState = new SelectionState();
+        selectionState.selectionScreen = selectionScreen;
+        selectionState.signalBus = _signalBus;
         selectionState.Id = signal.getId();
         selectionState.Name = signal.getName();
         _stateMachine.Load(selectionState);
