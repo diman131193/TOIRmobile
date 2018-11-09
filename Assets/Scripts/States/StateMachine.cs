@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
@@ -57,8 +58,10 @@ public class StateMachine : IStateMachine
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            AndroidJavaObject activity = new AndroidJavaClass("com.IMH.TOIR").GetStatic<AndroidJavaObject>("currentActivity");
-            activity.Call<bool>("moveTaskToBack", true);
+            //AndroidJavaObject activity = new AndroidJavaClass("com.IMH.TOIR").GetStatic<AndroidJavaObject>("currentActivity");
+            //activity.Call<bool>("moveTaskToBack", true);
+            Process.GetCurrentProcess().Kill();
+            //Application.Quit();
         }
         else
         {
