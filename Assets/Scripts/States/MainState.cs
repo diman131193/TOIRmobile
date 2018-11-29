@@ -23,24 +23,10 @@ public class MainState : BaseState {
     {
         mainScreen.ButtonUpClicked += ButtonUpClicked;
         mainScreen.ButtonDownClicked += ButtonDownClicked;
-        mainScreen.ButtonChartClicked += ButtonChartClicked;
-        mainScreen.ButtonCloseClicked += ButtonCloseClicked;
+        mainScreen.ButtonDown.interactable = false;
+        mainScreen.ButtonUp.interactable = true;
         base.Load();
         Instantiate();
-        //if (deviceModel.id == 2)
-        //{
-        //    mainScreen.SetTitle("Комбайн МВ-12");
-        //    model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/comb_adv"), new Vector3(0, 0, 25), Quaternion.identity);
-        //    animator = model.GetComponentInChildren<Animator>();
-        //} else if (deviceModel.id == 1)
-        //{
-        //    mainScreen.SetTitle("Ролик прокатный");
-        //    model = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/rolik"), new Vector3(0, 0, 25), Quaternion.identity);
-        //    animator = model.GetComponentInChildren<Animator>();
-        //}
-        ///Модель сервера
-
-        //mainScreen.SetTitle(deviceModel.Name);
         mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().Model = model.transform;
@@ -51,8 +37,6 @@ public class MainState : BaseState {
         base.Unload();
         mainScreen.ButtonUpClicked -= ButtonUpClicked;
         mainScreen.ButtonDownClicked -= ButtonDownClicked;
-        mainScreen.ButtonChartClicked -= ButtonChartClicked;
-        mainScreen.ButtonCloseClicked -= ButtonCloseClicked;
         GameObject.Destroy(model);
         Bundle.Unload(true);
         mainScreen.Hide();
@@ -139,17 +123,5 @@ public class MainState : BaseState {
             child.gameObject.layer = 13;
         }
         animator = model.GetComponentInChildren<Animator>();
-    }
-
-    public void ButtonChartClicked()
-    {
-        mainScreen.ChartPanel.SetActive(true);
-        model.SetActive(false);
-    }
-
-    public void ButtonCloseClicked()
-    {
-        mainScreen.ChartPanel.SetActive(false);
-        model.SetActive(true);
     }
 }

@@ -11,6 +11,12 @@ public class SelectionScreen : BaseScreen
     public ScrollRect SelectionView;
 
     [SerializeField]
+    public RectTransform ChartButtonPrefab;
+
+    [SerializeField]
+    public ScrollRect ChartView;
+
+    [SerializeField]
     public Button _3D;
 
     [SerializeField]
@@ -28,6 +34,7 @@ public class SelectionScreen : BaseScreen
     public float speed = 5f;
 
     public event Action<CustomButton> SelectionButtonClicked = delegate { };
+    public event Action<CustomButton> ChartButtonClicked = delegate { };
     public event Action _3DButtonClicked = delegate { };
     public event Action _2DButtonClicked = delegate { };
 
@@ -71,6 +78,14 @@ public class SelectionScreen : BaseScreen
         }
     }
 
+    public void ClearCharts()
+    {
+        foreach (Transform child in ChartView.content)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     public void RenderScreenContent(SelectionModel[] selections)
     {
         for (int i = 0; i < selections.Length; i++)
@@ -91,9 +106,31 @@ public class SelectionScreen : BaseScreen
         }
     }
 
+    public void RenderChartContent()
+    {
+        
+         var instance = GameObject.Instantiate(ChartButtonPrefab.gameObject) as GameObject;
+
+         instance.transform.SetParent(ChartView.content, false);
+
+         instance.transform.Find("Text").GetComponent<Text>().text = "Чертёж";
+
+         var button = instance.GetComponent<CustomButton>();
+
+         button.onClick.AddListener(() =>
+            {
+                ChartButtonClicked(button);
+            });
+    }
+
     private void OnDestroy()
     {
         foreach (Transform button in SelectionView.content)
+        {
+            button.gameObject.GetComponent<CustomButton>().onClick.RemoveAllListeners();
+        }
+
+        foreach (Transform button in ChartView.content)
         {
             button.gameObject.GetComponent<CustomButton>().onClick.RemoveAllListeners();
         }
