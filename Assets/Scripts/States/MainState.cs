@@ -23,11 +23,18 @@ public class MainState : BaseState {
     {
         mainScreen.ButtonUpClicked += ButtonUpClicked;
         mainScreen.ButtonDownClicked += ButtonDownClicked;
+        mainScreen.ButtonSettingsClicked += ButtonSettingsClicked;
+        mainScreen.ButtonInstrumentClicked += ButtonInstrumentClicked;
+        mainScreen.ButtonClockClicked += ButtonClockClicked;
         mainScreen.ButtonDown.interactable = false;
         mainScreen.ButtonUp.interactable = true;
+        mainScreen.OperationType.text = "Начало работы.";
+        mainScreen.ButtonSettings.interactable = false;
+        mainScreen.ButtonInstrument.interactable = false;
+        mainScreen.ButtonClock.interactable = false;
         base.Load();
         Instantiate();
-        mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
+        mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().Model = model.transform;
         mainScreen.Show();
@@ -37,6 +44,9 @@ public class MainState : BaseState {
         base.Unload();
         mainScreen.ButtonUpClicked -= ButtonUpClicked;
         mainScreen.ButtonDownClicked -= ButtonDownClicked;
+        mainScreen.ButtonSettingsClicked -= ButtonSettingsClicked;
+        mainScreen.ButtonInstrumentClicked -= ButtonInstrumentClicked;
+        mainScreen.ButtonClockClicked -= ButtonClockClicked;
         GameObject.Destroy(model);
         Bundle.Unload(true);
         mainScreen.Hide();
@@ -44,30 +54,23 @@ public class MainState : BaseState {
 
     public void ButtonUpClicked()
     {
-        ///Todo hardcode. Hardcode comleted;
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonDown.interactable = true;
+        currentState++;
+   
         if (deviceModel.id == 1)
         {
             
-            if (currentState < 2)
+            if (currentState <= 2)
             {
-                animator.SetInteger("state", currentState + 1);
-                mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". Открутить болты и снять наружнюю крышку с подшипниковой опоры.\nИнструменты: Ключ гаечный №18, зубило, молоток.";
+                animator.SetInteger("state", currentState);
+                mainScreen.OperationType.text = "" + currentState + ". Разборка";
+                mainScreen.ButtonSettings.interactable = false;
+                mainScreen.ButtonInstrument.interactable = true;
+                mainScreen.ButtonClock.interactable = true;
+                mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + "Открутить 16 болтов М12 снять наружние крышки с подшипниковых опор";
             }
-            if (currentState + 1 == 2)
-            {
-                mainScreen.ButtonUp.interactable = false;
-            }
-        }
-        else if (deviceModel.id == 2)
-        {
-            if (currentState < 4)
-            {
-                animator.SetInteger("state", currentState + 1);
-                mainScreen.Prompt.text = "Шаг " + (currentState + 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
-            }
-            if (currentState + 1 == 4)
+            if (currentState == 2)
             {
                 mainScreen.ButtonUp.interactable = false;
             }
@@ -79,35 +82,53 @@ public class MainState : BaseState {
         ///Todo hardcode. Hardcode comleted; 
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonUp.interactable = true;
+        currentState--;
         if (deviceModel.id == 1)
-        {
-            if (currentState > 1)
-            {
-                animator.SetInteger("state", currentState - 1);
-                mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". Открутить болты и снять наружнюю крышку с подшипниковой опоры.\nИнструменты: Ключ гаечный №18, зубило, молоток.";
-            }
-            if (currentState == 1)
-            {
-                animator.SetInteger("state", currentState - 1);
-                mainScreen.Prompt.text = "3-D Модель устройства. Крутить с помощью джойстиков. Приближать пальцами. Детальный разбор - по стрелочкам слева.";
-            }
-            if (currentState - 1 == 0)
-            {
-                mainScreen.ButtonDown.interactable = false;
-            }
-        }
-        else if (deviceModel.id == 2)
         {
             if (currentState > 0)
             {
-                animator.SetInteger("state", currentState - 1);
-                mainScreen.Prompt.text = "Шаг " + (currentState - 1) + ". На этом шаге делается что-то с фигурой. Осуществляется при помощи инструментов: отвертка, ключ на 12, болгарка";
+                animator.SetInteger("state", currentState);
+                mainScreen.OperationType.text = "" + currentState + ". Разборка";
+                mainScreen.ButtonSettings.interactable = false;
+                mainScreen.ButtonInstrument.interactable = true;
+                mainScreen.ButtonClock.interactable = true;
+                mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + "Открутить 16 болтов М12 снять наружние крышки с подшипниковых опор";
             }
-            if (currentState - 1 == 0)
+            if (currentState == 0)
             {
+                animator.SetInteger("state", currentState);
+                mainScreen.OperationType.text = "Начало работы.";
+                mainScreen.ButtonSettings.interactable = false;
+                mainScreen.ButtonInstrument.interactable = false;
+                mainScreen.ButtonClock.interactable = false;
+                mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
                 mainScreen.ButtonDown.interactable = false;
             }
         }
+    }
+
+    public void ButtonSettingsClicked()
+    {
+        mainScreen.ButtonSettings.interactable = false;
+        mainScreen.ButtonInstrument.interactable = true;
+        mainScreen.ButtonClock.interactable = true;
+        mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + "Открутить 16 болтов М12 снять наружние крышки с подшипниковых опор";
+    }
+
+    public void ButtonInstrumentClicked()
+    {
+        mainScreen.ButtonSettings.interactable = true;
+        mainScreen.ButtonInstrument.interactable = false;
+        mainScreen.ButtonClock.interactable = true;
+        mainScreen.Description.text = "<b><size=30>Инструменты:</size></b>\n" + "Ключ гаечный №18, зубило, молоток";
+    }
+
+    public void ButtonClockClicked()
+    {
+        mainScreen.ButtonSettings.interactable = true;
+        mainScreen.ButtonInstrument.interactable = true;
+        mainScreen.ButtonClock.interactable = false;
+        mainScreen.Description.text = "<b><size=30>Время:</size></b>\n" + "10 минут";
     }
 
     private void Instantiate()

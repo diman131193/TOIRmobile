@@ -12,10 +12,25 @@ public class MainScreen : BaseScreen
     public Button ButtonDown;
 
     [SerializeField]
-    public Text Prompt;
+    public Button ButtonSettings;
+
+    [SerializeField]
+    public Button ButtonInstrument;
+
+    [SerializeField]
+    public Button ButtonClock;
+
+    [SerializeField]
+    public Text Description;
+
+    [SerializeField]
+    public Text OperationType;
 
     public event Action ButtonUpClicked = delegate { };
     public event Action ButtonDownClicked = delegate { };
+    public event Action ButtonSettingsClicked = delegate { };
+    public event Action ButtonInstrumentClicked = delegate { };
+    public event Action ButtonClockClicked = delegate { };
 
     void Start()
     {
@@ -29,12 +44,28 @@ public class MainScreen : BaseScreen
             ButtonDownClicked();
         });
 
-        ButtonDown.interactable = false;
+        ButtonSettings.onClick.AddListener(() =>
+        {
+            ButtonSettingsClicked();
+        });
+
+        ButtonInstrument.onClick.AddListener(() =>
+        {
+            ButtonInstrumentClicked();
+        });
+
+        ButtonClock.onClick.AddListener(() =>
+        {
+            ButtonClockClicked();
+        });
     }
 
     private void OnDestroy()
     {
         ButtonUp.onClick.RemoveAllListeners();
         ButtonDown.onClick.RemoveAllListeners();
+        ButtonSettings.onClick.RemoveAllListeners();
+        ButtonInstrument.onClick.RemoveAllListeners();
+        ButtonClock.onClick.RemoveAllListeners();
     }
 }
