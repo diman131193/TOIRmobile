@@ -15,7 +15,7 @@ public class LoadState : BaseState {
     [Inject]
     private DeviceModel deviceModel;
 
-    public int ModelId { get; set; }
+    public string ModelId { get; set; }
     public string Name;
 
     //private int time = 3;

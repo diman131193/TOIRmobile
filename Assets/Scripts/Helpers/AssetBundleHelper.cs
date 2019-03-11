@@ -11,7 +11,7 @@ namespace Helpers
     public static class AssetBundleHelper
     {
 
-        public static IEnumerator GetAssetBundle(int model_id, System.Action<AssetBundle> result)
+        public static IEnumerator GetAssetBundle(string model_id, System.Action<AssetBundle> result)
         {
             string address = null;//ConfigurationManager.GetComponent("AssetBundleServer"); не работает на устройстве....
             if (address == null)

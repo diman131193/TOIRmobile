@@ -4,10 +4,10 @@ using UnityEngine;
 
 public struct MainSceneOpenSignal {
     private AssetBundle Bundle;
-    private int Id;
+    private string Id;
     private string Name;
 
-    public MainSceneOpenSignal(AssetBundle bundle, int id, string name)
+    public MainSceneOpenSignal(AssetBundle bundle, string id, string name)
     {
         this.Bundle = bundle;
         this.Id = id;
@@ -19,7 +19,7 @@ public struct MainSceneOpenSignal {
         return this.Bundle;
     }
 
-    public int getId()
+    public string getId()
     {
         return this.Id;
     }

@@ -11,7 +11,7 @@ public class MainState : BaseState {
     private SignalBus signalBus;
     
     public AssetBundle Bundle { get; set; }
-    public int Id;
+    public string Id;
     public string Name;
 
     private GameObject model;
@@ -58,7 +58,7 @@ public class MainState : BaseState {
         mainScreen.ButtonDown.interactable = true;
         currentState++;
    
-        if (deviceModel.id == 1)
+        if (deviceModel.id == "1")
         {
             
             if (currentState <= 2)
@@ -83,7 +83,7 @@ public class MainState : BaseState {
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonUp.interactable = true;
         currentState--;
-        if (deviceModel.id == 1)
+        if (deviceModel.id == "1")
         {
             if (currentState > 0)
             {

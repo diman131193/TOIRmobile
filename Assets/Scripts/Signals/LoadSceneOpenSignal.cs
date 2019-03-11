@@ -4,16 +4,16 @@ using UnityEngine;
 
 public struct LoadSceneOpenSignal {
 
-    private int Id;
+    private string Id;
     private string Name;
 
-    public LoadSceneOpenSignal(int id, string name)
+    public LoadSceneOpenSignal(string id, string name)
     {
         this.Id = id;
         this.Name = name;
     }
 
-    public int getId()
+    public string getId()
     {
         return this.Id;
     }
