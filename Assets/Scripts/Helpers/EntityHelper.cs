@@ -63,5 +63,29 @@ namespace Helpers
             }
             www.Dispose();
         }
+
+        public static IEnumerator getInstructions(string id, System.Action<InstructionModel[]> result)
+        {
+            string address = @"http://10.10.47.201/toirsvc/api/getInstructions/";
+
+            if (id != null)
+            {
+                address += id;
+            }
+
+            UnityWebRequest www = UnityWebRequest.Get(address);
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                InstructionModel[] res = JsonHelper.FromJson<InstructionModel>("{\"Items\":" + www.downloadHandler.text + "}");
+                result.Invoke(res);
+            }
+            www.Dispose();
+        }
     }
 }

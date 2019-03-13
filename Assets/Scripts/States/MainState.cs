@@ -19,6 +19,8 @@ public class MainState : BaseState {
     
     private DeviceModel deviceModel = new DeviceModel();
 
+    private InstructionModel[] instruction;
+
     public override void Load()
     {
         mainScreen.ButtonUpClicked += ButtonUpClicked;
@@ -38,6 +40,7 @@ public class MainState : BaseState {
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().Model = model.transform;
         mainScreen.Show();
+        mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions("31-02-01-002-003-004-008", value => GetInstruction(value)));
     }
     public override void Unload()
     {
@@ -52,28 +55,29 @@ public class MainState : BaseState {
         mainScreen.Hide();
     }
 
+    void GetInstruction(InstructionModel[] res)
+    {
+        instruction = res;
+    }
+
     public void ButtonUpClicked()
     {
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonDown.interactable = true;
         currentState++;
    
-        if (deviceModel.id == "1")
+        if (currentState <= instruction.Length)
         {
-            
-            if (currentState <= 2)
-            {
-                animator.SetInteger("state", currentState);
-                mainScreen.OperationType.text = "" + currentState + ". Разборка";
-                mainScreen.ButtonSettings.interactable = false;
-                mainScreen.ButtonInstrument.interactable = true;
-                mainScreen.ButtonClock.interactable = true;
-                mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + "Открутить 16 болтов М12 снять наружние крышки с подшипниковых опор";
-            }
-            if (currentState == 2)
-            {
-                mainScreen.ButtonUp.interactable = false;
-            }
+            animator.SetInteger("state", currentState);
+            mainScreen.OperationType.text = "" + currentState + ". " + instruction[currentState - 1].OPERATION_DESCRIPTION;
+            mainScreen.ButtonSettings.interactable = false;
+            mainScreen.ButtonInstrument.interactable = true;
+            mainScreen.ButtonClock.interactable = true;
+            mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + instruction[currentState - 1].LONG_DESCRIPTION;
+        }
+        if (currentState == instruction.Length)
+        {
+            mainScreen.ButtonUp.interactable = false;
         }
     }
 
@@ -83,57 +87,57 @@ public class MainState : BaseState {
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonUp.interactable = true;
         currentState--;
-        if (deviceModel.id == "1")
+        if (currentState > 0)
         {
-            if (currentState > 0)
-            {
-                animator.SetInteger("state", currentState);
-                mainScreen.OperationType.text = "" + currentState + ". Разборка";
-                mainScreen.ButtonSettings.interactable = false;
-                mainScreen.ButtonInstrument.interactable = true;
-                mainScreen.ButtonClock.interactable = true;
-                mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + "Открутить 16 болтов М12 снять наружние крышки с подшипниковых опор";
-            }
-            if (currentState == 0)
-            {
-                animator.SetInteger("state", currentState);
-                mainScreen.OperationType.text = "Начало работы.";
-                mainScreen.ButtonSettings.interactable = false;
-                mainScreen.ButtonInstrument.interactable = false;
-                mainScreen.ButtonClock.interactable = false;
-                mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
-                mainScreen.ButtonDown.interactable = false;
-            }
+            animator.SetInteger("state", currentState);
+            mainScreen.OperationType.text = "" + currentState + ". " + instruction[currentState - 1].OPERATION_DESCRIPTION;
+            mainScreen.ButtonSettings.interactable = false;
+            mainScreen.ButtonInstrument.interactable = true;
+            mainScreen.ButtonClock.interactable = true;
+            mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + instruction[currentState - 1].LONG_DESCRIPTION;
+        }
+        if (currentState == 0)
+        {
+            animator.SetInteger("state", currentState);
+            mainScreen.OperationType.text = "Начало работы.";
+            mainScreen.ButtonSettings.interactable = false;
+            mainScreen.ButtonInstrument.interactable = false;
+            mainScreen.ButtonClock.interactable = false;
+            mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
+            mainScreen.ButtonDown.interactable = false;
         }
     }
 
     public void ButtonSettingsClicked()
     {
+        var currentState = animator.GetInteger("state");
         mainScreen.ButtonSettings.interactable = false;
         mainScreen.ButtonInstrument.interactable = true;
         mainScreen.ButtonClock.interactable = true;
-        mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + "Открутить 16 болтов М12 снять наружние крышки с подшипниковых опор";
+        mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + instruction[currentState - 1].LONG_DESCRIPTION;
     }
 
     public void ButtonInstrumentClicked()
     {
+        var currentState = animator.GetInteger("state");
         mainScreen.ButtonSettings.interactable = true;
         mainScreen.ButtonInstrument.interactable = false;
         mainScreen.ButtonClock.interactable = true;
-        mainScreen.Description.text = "<b><size=30>Инструменты:</size></b>\n" + "Ключ гаечный №18, зубило, молоток";
+        mainScreen.Description.text = "<b><size=30>Инструменты:</size></b>\n" + instruction[currentState - 1].INSTRUMENTS;
     }
 
     public void ButtonClockClicked()
     {
+        var currentState = animator.GetInteger("state");
         mainScreen.ButtonSettings.interactable = true;
         mainScreen.ButtonInstrument.interactable = true;
         mainScreen.ButtonClock.interactable = false;
-        mainScreen.Description.text = "<b><size=30>Время:</size></b>\n" + "10 минут";
+        mainScreen.Description.text = "<b><size=30>Время:</size></b>\n" + instruction[currentState - 1].OPERATION_TIME;
     }
 
     private void Instantiate()
     {
-        var prefab = Bundle.LoadAsset<GameObject>("rolik.prefab");
+        var prefab = Bundle.LoadAsset<GameObject>("31-02-01-002-003-004-008.prefab");
         deviceModel.Object = prefab;
         deviceModel.id = Id;
         mainScreen.SetTitle(Name);
