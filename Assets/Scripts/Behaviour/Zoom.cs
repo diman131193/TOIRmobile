@@ -14,6 +14,8 @@ public class Zoom : MonoBehaviour {
     [Header("Components")]
     public Transform Model;
 
+    public float zMin, zMax;
+
 	void Update () {
         if (Input.touchCount == 2)
         {
@@ -30,12 +32,12 @@ public class Zoom : MonoBehaviour {
 
             if (touchesPrevPosDifference > touchesCurPosDifference)
             {
-                zoomZ = Mathf.Clamp(Model.position.z + zoomModifier, 10.0f, 60.0f);
+                zoomZ = Mathf.Clamp(Model.position.z + zoomModifier, zMin, zMax);
             }
 
             if (touchesPrevPosDifference < touchesCurPosDifference)
             {
-                zoomZ = Mathf.Clamp(Model.position.z - zoomModifier, 10.0f, 60.0f);
+                zoomZ = Mathf.Clamp(Model.position.z - zoomModifier, zMin, zMax);
             }
 
             Model.position = new Vector3(Model.position.x, Model.position.y, zoomZ);

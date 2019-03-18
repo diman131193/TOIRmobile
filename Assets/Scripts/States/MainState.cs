@@ -39,6 +39,8 @@ public class MainState : BaseState {
         mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
         mainScreen.GetComponent<ModelRotation>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().Model = model.transform;
+        mainScreen.GetComponent<Zoom>().zMin = model.transform.position.z - 5.0f;
+        mainScreen.GetComponent<Zoom>().zMax = model.transform.position.z + 10.0f;
         mainScreen.Show();
         mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions("31-02-01-002-003-004-008", value => GetInstruction(value)));
     }
