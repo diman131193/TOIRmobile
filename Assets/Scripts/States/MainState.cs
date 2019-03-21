@@ -68,11 +68,16 @@ public class MainState : BaseState {
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonDown.interactable = true;
         currentState++;
+        string description = "";
    
         if (currentState <= instruction.Length)
         {
             animator.SetInteger("state", currentState);
-            mainScreen.OperationType.text = "" + currentState + ". " + instruction[currentState - 1].OPERATION_DESCRIPTION;
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "D") description = "Демонтаж";
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "R") description = "Разборка";
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "S") description = "Сборка";
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "M") description = "Монтаж";
+            mainScreen.OperationType.text = "" + currentState + ". " + description;
             mainScreen.ButtonSettings.interactable = false;
             mainScreen.ButtonInstrument.interactable = true;
             mainScreen.ButtonClock.interactable = true;
@@ -90,10 +95,16 @@ public class MainState : BaseState {
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonUp.interactable = true;
         currentState--;
+        string description = "";
+
         if (currentState > 0)
         {
             animator.SetInteger("state", currentState);
-            mainScreen.OperationType.text = "" + currentState + ". " + instruction[currentState - 1].OPERATION_DESCRIPTION;
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "D") description = "Демонтаж";
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "R") description = "Разборка";
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "S") description = "Сборка";
+            if (instruction[currentState - 1].OPERATION_DESCRIPTION == "M") description = "Монтаж";
+            mainScreen.OperationType.text = "" + currentState + ". " + description;
             mainScreen.ButtonSettings.interactable = false;
             mainScreen.ButtonInstrument.interactable = true;
             mainScreen.ButtonClock.interactable = true;

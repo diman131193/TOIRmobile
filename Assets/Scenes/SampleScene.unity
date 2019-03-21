@@ -6559,7 +6559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 0}
-  speed: 1
+  speed: 4
 --- !u!1 &2128000976
 GameObject:
   m_ObjectHideFlags: 0

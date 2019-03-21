@@ -11,17 +11,18 @@ public class ModelPosition : MonoBehaviour
     public Transform Model;
 
     [Header("Options")]
-    public float speed = 10000.0f;
+    public float speed = 4f;
 
     private void Update()
     {
-#if UNITY_IOS || UNITY_ANDROID
+        Debug.Log(Time.deltaTime);
         if(Input.touchCount == 3)
         {
             Touch myTouch = Input.GetTouch(0);
             if(myTouch.phase == TouchPhase.Moved)
             {
                 Vector2 positionChange = myTouch.deltaPosition;
+                //if (positionChange.sqrMagnitude > 1.0) positionChange.Normalize();
                 moveDirection = positionChange.normalized;
                 Model.position += (Vector3)moveDirection * speed * Time.deltaTime;
             }
@@ -30,6 +31,5 @@ public class ModelPosition : MonoBehaviour
         moveDirection.z = Input.acceleration.x;
         if (moveDirection.sqrMagnitude > 1.0) moveDirection.Normalize();
         Model.Translate(moveDirection * speed * Time.deltaTime);*/
-#endif
     }
 }
