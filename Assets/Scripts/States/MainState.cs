@@ -41,6 +41,7 @@ public class MainState : BaseState {
         mainScreen.GetComponent<Zoom>().Model = model.transform;
         mainScreen.GetComponent<Zoom>().zMin = model.transform.position.z - 5.0f;
         mainScreen.GetComponent<Zoom>().zMax = model.transform.position.z + 10.0f;
+        mainScreen.GetComponent<ModelPosition>().Model = model.transform;
         mainScreen.Show();
         mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions("31-02-01-002-003-004-008", value => GetInstruction(value)));
     }
