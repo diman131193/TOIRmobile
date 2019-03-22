@@ -26,6 +26,9 @@ public class MainScreen : BaseScreen
     [SerializeField]
     public Text OperationType;
 
+    [SerializeField]
+    public GameObject mainPanel;
+
     public event Action ButtonUpClicked = delegate { };
     public event Action ButtonDownClicked = delegate { };
     public event Action ButtonSettingsClicked = delegate { };

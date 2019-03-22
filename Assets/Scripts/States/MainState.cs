@@ -23,6 +23,7 @@ public class MainState : BaseState {
 
     public override void Load()
     {
+        mainScreen.mainPanel.SetActive(true);
         mainScreen.ButtonUpClicked += ButtonUpClicked;
         mainScreen.ButtonDownClicked += ButtonDownClicked;
         mainScreen.ButtonSettingsClicked += ButtonSettingsClicked;
@@ -55,6 +56,7 @@ public class MainState : BaseState {
         mainScreen.ButtonClockClicked -= ButtonClockClicked;
         GameObject.Destroy(model);
         Bundle.Unload(true);
+        mainScreen.mainPanel.SetActive(false);
         mainScreen.Hide();
     }
 
