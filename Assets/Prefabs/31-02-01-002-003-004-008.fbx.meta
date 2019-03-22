@@ -838,7 +838,7 @@ ModelImporter:
       name: 13
       takeName: Scene
       firstFrame: 961
-      lastFrame: 1290
+      lastFrame: 1280
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -861,11 +861,11 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     - serializedVersion: 16
       name: 14
       takeName: Scene
-      firstFrame: 1291
+      firstFrame: 1281
       lastFrame: 1430
       wrapMode: 0
       orientationOffsetY: 0
@@ -889,12 +889,12 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     - serializedVersion: 16
       name: 15
       takeName: Scene
       firstFrame: 1431
-      lastFrame: 1610
+      lastFrame: 1600
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -917,7 +917,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     - serializedVersion: 16
       name: 0
       takeName: Scene
@@ -949,7 +949,7 @@ ModelImporter:
     - serializedVersion: 16
       name: 16
       takeName: Scene
-      firstFrame: 1611
+      firstFrame: 1601
       lastFrame: 1800
       wrapMode: 0
       orientationOffsetY: 0
@@ -973,7 +973,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -1030,5 +1030,5 @@ ModelImporter:
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: 31-02-01-002-003-004-008
+  assetBundleVariant: unity3d

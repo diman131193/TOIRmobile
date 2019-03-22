@@ -15,7 +15,6 @@ public class ModelPosition : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Time.deltaTime);
         if(Input.touchCount == 3)
         {
             Touch myTouch = Input.GetTouch(0);
