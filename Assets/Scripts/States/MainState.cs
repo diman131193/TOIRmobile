@@ -44,7 +44,7 @@ public class MainState : BaseState {
         mainScreen.GetComponent<Zoom>().zMax = model.transform.position.z + 10.0f;
         mainScreen.GetComponent<ModelPosition>().Model = model.transform;
         mainScreen.Show();
-        mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions("31-02-01-002-003-004-008", value => GetInstruction(value)));
+        mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions("31-02-09-101-001-002-035", value => GetInstruction(value)));
     }
     public override void Unload()
     {
@@ -153,7 +153,7 @@ public class MainState : BaseState {
 
     private void Instantiate()
     {
-        var prefab = Bundle.LoadAsset<GameObject>("31-02-01-002-003-004-008.prefab");
+        var prefab = Bundle.LoadAsset<GameObject>("31-02-09-101-001-002-035.prefab");
         deviceModel.Object = prefab;
         deviceModel.id = Id;
         mainScreen.SetTitle(Name);
