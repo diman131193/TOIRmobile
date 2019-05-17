@@ -8,11 +8,15 @@ public class StartScreen : BaseScreen
     private Button StartButton;
 
     [SerializeField]
+    private Button SearchButton;
+
+    [SerializeField]
     private Button SettingsButton;
     
 
     public event Action SettingsClicked = delegate { };
     public event Action StartClicked = delegate { };
+    public event Action SearchClicked = delegate { };
 
     void Start()
     {
@@ -21,15 +25,22 @@ public class StartScreen : BaseScreen
             StartClicked();
         });
 
+        SearchButton.onClick.AddListener(() =>
+        {
+            SearchClicked();
+        });
+
         SettingsButton.onClick.AddListener(() =>
         {
             SettingsClicked();
         });
+
     }
 
     private void OnDestroy()
     {
         StartButton.onClick.RemoveAllListeners();
         SettingsButton.onClick.RemoveAllListeners();
+        SearchButton.onClick.RemoveAllListeners();
     }
 }

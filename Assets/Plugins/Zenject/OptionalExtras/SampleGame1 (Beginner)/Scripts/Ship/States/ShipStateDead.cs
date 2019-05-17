@@ -34,9 +34,9 @@ namespace Zenject.Asteroids
         {
             _ship.MeshRenderer.enabled = false;
 
-#if !UNITY_2018
+/*#if !UNITY_2018
             _ship.ParticleEmitter.gameObject.SetActive(false);
-#endif
+#endif*/
 
             _explosion = _explosionFactory.Create().gameObject;
             _explosion.transform.position = _ship.Position;
@@ -59,9 +59,9 @@ namespace Zenject.Asteroids
         {
             _ship.MeshRenderer.enabled = true;
 
-#if !UNITY_2018
+/*#if !UNITY_2018
             _ship.ParticleEmitter.gameObject.SetActive(true);
-#endif
+#endif*/
 
             GameObject.Destroy(_explosion);
             GameObject.Destroy(_shipBroken);

@@ -9,4 +9,6 @@ public class UIManager : MonoBehaviour
     public SettingsScreen SettingsScreen;
     public SelectionScreen SelectionScreen;
     public StartScreen StartScreen;
+    public SearchScreen SearchScreen;
+    public ResultScreen ResultScreen;
 }

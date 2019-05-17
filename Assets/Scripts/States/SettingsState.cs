@@ -19,7 +19,7 @@ public class SettingsState : BaseState {
     {
         base.Load();
         settingsScreen.SettingsClicked += OnSettingsClicked;
-        settingsScreen.SetTitle("Авторизация");
+        settingsScreen.SetTitle("Настройки");
         settingsScreen.Show();
     }
     public override void Unload()

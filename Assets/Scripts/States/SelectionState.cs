@@ -102,7 +102,7 @@ public class SelectionState : BaseState
 
     private void On_3DButtonClicked()
     {
-        signalBus.Fire(new LoadSceneOpenSignal("31-02-09-101-001-002-035", "Цилиндр"));
+        signalBus.Fire(new LoadSceneOpenSignal(Id, Name));
     }
 
     private void On_2DButtonClicked()

@@ -26,6 +26,8 @@ public class AppInstaller : MonoInstaller
         Container.Bind<LoadState>().AsSingle();
         Container.Bind<SettingsState>().AsSingle();
         Container.Bind<StartState>().AsSingle();
+        Container.Bind<SearchState>().AsSingle();
+        Container.Bind<ResultState>().AsSingle();
     }
 
     private void InstallViews()
@@ -36,6 +38,8 @@ public class AppInstaller : MonoInstaller
         Container.Bind<SettingsScreen>().FromInstance(_uiManager.SettingsScreen).AsSingle();
         Container.Bind<SelectionScreen>().FromInstance(_uiManager.SelectionScreen).AsSingle();
         Container.Bind<StartScreen>().FromInstance(_uiManager.StartScreen).AsSingle();
+        Container.Bind<SearchScreen>().FromInstance(_uiManager.SearchScreen).AsSingle();
+        Container.Bind<ResultScreen>().FromInstance(_uiManager.ResultScreen).AsSingle();
     }
 
     void InstallMisc()
@@ -54,6 +58,8 @@ public class AppInstaller : MonoInstaller
         Container.DeclareSignal<SettingsSceneOpenSignal>();
         Container.DeclareSignal<SelectionSceneOpenSignal>();
         Container.DeclareSignal<StartSceneOpenSignal>();
+        Container.DeclareSignal<SearchSceneOpenSignal>();
+        Container.DeclareSignal<ResultSceneOpenSignal>();
         Container.DeclareSignal<BackButtonPressedSignal>();
     }
 

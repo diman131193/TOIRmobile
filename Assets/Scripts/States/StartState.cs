@@ -17,6 +17,7 @@ public class StartState : BaseState
     {
         base.Load();
         startScreen.StartClicked += OnStartClicked;
+        startScreen.SearchClicked += OnSearchClicked;
         startScreen.SettingsClicked += OnSettingsClicked;
         startScreen.SetTitle("ТОиР");
         startScreen.Show();
@@ -28,12 +29,18 @@ public class StartState : BaseState
         base.Unload();
         startScreen.StartClicked -= OnStartClicked;
         startScreen.SettingsClicked -= OnSettingsClicked;
+        startScreen.SearchClicked -= OnSearchClicked;
         startScreen.Hide();
     }
 
     public void OnSettingsClicked()
     {
        signalBus.Fire<SettingsSceneOpenSignal>(); 
+    }
+
+    public void OnSearchClicked()
+    {
+        signalBus.Fire<SearchSceneOpenSignal>();
     }
 
     public void OnStartClicked()
