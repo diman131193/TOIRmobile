@@ -87,5 +87,53 @@ namespace Helpers
             }
             www.Dispose();
         }
+
+        public static IEnumerator doSearch(string id, System.Action<SelectionModel[]> result)
+        {
+            string address = @"http://10.10.47.201/toirsvc/api/doSearch/";
+
+            if (id != null)
+            {
+                address += id;
+            }
+
+            UnityWebRequest www = UnityWebRequest.Get(address);
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                SelectionModel[] res = JsonHelper.FromJson<SelectionModel>("{\"Items\":" + www.downloadHandler.text + "}");
+                result.Invoke(res);
+            }
+            www.Dispose();
+        }
+
+        public static IEnumerator getCharts(string id, System.Action<ChartsModel[]> result)
+        {
+            string address = @"http://10.10.47.201/toirsvc/api/getCharts/";
+
+            if (id != null)
+            {
+                address += id;
+            }
+
+            UnityWebRequest www = UnityWebRequest.Get(address);
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError || www.responseCode == 204)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                ChartsModel[] res = JsonHelper.FromJson<ChartsModel>("{\"Items\":" + www.downloadHandler.text + "}");
+                result.Invoke(res);
+            }
+            www.Dispose();
+        }
     }
 }

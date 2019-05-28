@@ -106,21 +106,27 @@ public class SelectionScreen : BaseScreen
         }
     }
 
-    public void RenderChartContent()
+    public void RenderChartContent(ChartsModel[] charts)
     {
-        
-         var instance = GameObject.Instantiate(ChartButtonPrefab.gameObject) as GameObject;
 
-         instance.transform.SetParent(ChartView.content, false);
+        for (int i = 0; i < charts.Length; i++)
+        {
+            Debug.Log(charts[i].URL);
+            var instance = GameObject.Instantiate(ChartButtonPrefab.gameObject) as GameObject;
 
-         instance.transform.Find("Text").GetComponent<Text>().text = "Чертёж";
+            instance.transform.SetParent(ChartView.content, false);
 
-         var button = instance.GetComponent<CustomButton>();
+            instance.transform.Find("Text").GetComponent<Text>().text = "Чертёж " + (i + 1);
 
-         button.onClick.AddListener(() =>
+            var button = instance.GetComponent<CustomButton>();
+            button.setId(charts[i].URL);
+
+            button.onClick.AddListener(() =>
             {
                 ChartButtonClicked(button);
             });
+        }
+        
     }
 
     private void OnDestroy()

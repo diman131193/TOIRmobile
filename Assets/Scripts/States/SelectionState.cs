@@ -25,6 +25,11 @@ public class SelectionState : BaseState
         selectionScreen.RenderScreenContent(res); 
     }
 
+    void GetCharts(ChartsModel[] res)
+    {
+        selectionScreen.RenderChartContent(res);
+    }
+
     public override void Load()
     {
         base.Load();
@@ -35,12 +40,12 @@ public class SelectionState : BaseState
         selectionScreen._2D.gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         selectionScreen.SetTitle(Name);
         selectionScreen.ChartButtonClicked += OnChartButtonClicked;
-        selectionScreen.RenderChartContent();
         selectionScreen.SelectionButtonClicked += OnSelectionButtonClicked;
         selectionScreen._3DButtonClicked += On_3DButtonClicked;
         selectionScreen._2DButtonClicked += On_2DButtonClicked;
         selectionScreen.Show();
         selectionScreen.StartCoroutine(Helpers.EntityHelper.getEntityList(Id, value => GetSelections(value)));
+        selectionScreen.StartCoroutine(Helpers.EntityHelper.getCharts(Id, value => GetCharts(value)));
     }
 
     public override void Unload()
@@ -93,11 +98,13 @@ public class SelectionState : BaseState
             Debug.Log(error);
         }
         Application.OpenURL(savePath + "/72_167_01_a1_1a_rus1123.dwg_result.pdf");
+        
     }
 
     private void OnChartButtonClicked(CustomButton button)
     {
-        selectionScreen.StartCoroutine(OpenPDF());
+        //selectionScreen.StartCoroutine(OpenPDF());
+        Application.OpenURL(button.getId());
     }
 
     private void On_3DButtonClicked()

@@ -23,29 +23,34 @@ public class MainState : BaseState {
 
     public override void Load()
     {
-        mainScreen.mainPanel.SetActive(true);
-        mainScreen.ButtonUpClicked += ButtonUpClicked;
-        mainScreen.ButtonDownClicked += ButtonDownClicked;
-        mainScreen.ButtonSettingsClicked += ButtonSettingsClicked;
-        mainScreen.ButtonInstrumentClicked += ButtonInstrumentClicked;
-        mainScreen.ButtonClockClicked += ButtonClockClicked;
-        mainScreen.ButtonDown.interactable = false;
-        mainScreen.ButtonUp.interactable = true;
-        mainScreen.OperationType.text = "Начало работы.";
-        mainScreen.ButtonSettings.interactable = false;
-        mainScreen.ButtonInstrument.interactable = false;
-        mainScreen.ButtonClock.interactable = false;
+        
         base.Load();
-        Instantiate();
-        mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
-        mainScreen.GetComponent<ModelRotation>().Model = model.transform;
-        mainScreen.GetComponent<Zoom>().Model = model.transform;
-        mainScreen.GetComponent<Zoom>().zMin = model.transform.position.z - 5.0f;
-        mainScreen.GetComponent<Zoom>().zMax = model.transform.position.z + 10.0f;
-        mainScreen.GetComponent<ModelPosition>().Model = model.transform;
-        mainScreen.Show();
-        mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions(Id, value => GetInstruction(value)));
+        if (Bundle)
+        {
+            mainScreen.mainPanel.SetActive(true);
+            mainScreen.ButtonUpClicked += ButtonUpClicked;
+            mainScreen.ButtonDownClicked += ButtonDownClicked;
+            mainScreen.ButtonSettingsClicked += ButtonSettingsClicked;
+            mainScreen.ButtonInstrumentClicked += ButtonInstrumentClicked;
+            mainScreen.ButtonClockClicked += ButtonClockClicked;
+            mainScreen.ButtonDown.interactable = false;
+            mainScreen.ButtonUp.interactable = true;
+            mainScreen.OperationType.text = "Начало работы.";
+            mainScreen.ButtonSettings.interactable = false;
+            mainScreen.ButtonInstrument.interactable = false;
+            mainScreen.ButtonClock.interactable = false;
+            Instantiate();
+            mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
+            mainScreen.GetComponent<ModelRotation>().Model = model.transform;
+            mainScreen.GetComponent<Zoom>().Model = model.transform;
+            mainScreen.GetComponent<Zoom>().zMin = model.transform.position.z - 5.0f;
+            mainScreen.GetComponent<Zoom>().zMax = model.transform.position.z + 10.0f;
+            mainScreen.GetComponent<ModelPosition>().Model = model.transform;
+            mainScreen.Show();
+            mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions(Id, value => GetInstruction(value)));
+        }   
     }
+
     public override void Unload()
     {
         base.Unload();

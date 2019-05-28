@@ -23,7 +23,7 @@ namespace Helpers
             address = address + model_id;
             Debug.Log(address);
             UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle(address);
-            yield return www.SendWebRequest();
+            yield return www.SendWebRequest(); 
             Debug.Log(www.downloadedBytes);
             AssetBundle bundle = null;
             if (!string.IsNullOrEmpty(www.error))

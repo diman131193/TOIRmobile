@@ -10,10 +10,10 @@ public class ResultState : BaseState
 
     public string Name;
 
-    public SelectionModel rolik = new SelectionModel("31-02-01-002-003-004-008", "Ролик в сборе №3 теплоизолированного отводящего рольганга механизма выдачи заготовки из печи");
-    public SelectionModel cylinder = new SelectionModel("31-02-09-101-001-002-035", "Пневмоцилиндр CSV2AN2S33AC-M22");
+    //public SelectionModel rolik = new SelectionModel("31-02-01-002-003-004-008", "Ролик в сборе №3 теплоизолированного отводящего рольганга механизма выдачи заготовки из печи");
+    //public SelectionModel cylinder = new SelectionModel("31-02-09-101-001-002-035", "Пневмоцилиндр CSV2AN2S33AC-M22");
 
-    public SelectionModel[] temp = new SelectionModel[2];
+    //public SelectionModel[] temp = new SelectionModel[2];
     
     [Inject]
     public ResultScreen resultScreen;
@@ -35,10 +35,10 @@ public class ResultState : BaseState
         resultScreen.SetTitle("Результат поиска по запросу \"" + Name + "\"" );
         resultScreen.SelectionButtonClicked += OnSelectionButtonClicked;
         resultScreen.Show();
-        //resultScreen.StartCoroutine(Helpers.EntityHelper.getEntityList(Name, value => GetSelections(value)));
-        temp[0] = rolik;
+        resultScreen.StartCoroutine(Helpers.EntityHelper.doSearch(Name, value => GetSelections(value)));
+        /*temp[0] = rolik;
         temp[1] = cylinder;
-        resultScreen.RenderScreenContent(temp);
+        resultScreen.RenderScreenContent(temp);*/
     }
 
     public override void Unload()
