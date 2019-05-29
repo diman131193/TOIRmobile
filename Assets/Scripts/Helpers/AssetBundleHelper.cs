@@ -29,7 +29,8 @@ namespace Helpers
             if (!string.IsNullOrEmpty(www.error))
             {
                 Debug.Log(www.error);
-                yield break;
+                result.Invoke(bundle);
+                //yield break;
             }
             else
             {

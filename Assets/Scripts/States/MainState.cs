@@ -48,21 +48,28 @@ public class MainState : BaseState {
             mainScreen.GetComponent<ModelPosition>().Model = model.transform;
             mainScreen.Show();
             mainScreen.StartCoroutine(Helpers.EntityHelper.getInstructions(Id, value => GetInstruction(value)));
-        }   
+        }
+        mainScreen.SetTitle(Name);
     }
 
     public override void Unload()
     {
         base.Unload();
-        mainScreen.ButtonUpClicked -= ButtonUpClicked;
-        mainScreen.ButtonDownClicked -= ButtonDownClicked;
-        mainScreen.ButtonSettingsClicked -= ButtonSettingsClicked;
-        mainScreen.ButtonInstrumentClicked -= ButtonInstrumentClicked;
-        mainScreen.ButtonClockClicked -= ButtonClockClicked;
-        GameObject.Destroy(model);
-        Bundle.Unload(true);
-        mainScreen.mainPanel.SetActive(false);
-        mainScreen.Hide();
+        if (Bundle)
+        {
+            mainScreen.ButtonUpClicked -= ButtonUpClicked;
+            mainScreen.ButtonDownClicked -= ButtonDownClicked;
+            mainScreen.ButtonSettingsClicked -= ButtonSettingsClicked;
+            mainScreen.ButtonInstrumentClicked -= ButtonInstrumentClicked;
+            mainScreen.ButtonClockClicked -= ButtonClockClicked;
+            GameObject.Destroy(model);
+            Bundle.Unload(true);
+            mainScreen.mainPanel.SetActive(false);
+            mainScreen.Hide();
+        }
+        
+
+        
     }
 
     void GetInstruction(InstructionModel[] res)
@@ -161,7 +168,6 @@ public class MainState : BaseState {
         var prefab = Bundle.LoadAsset<GameObject>(Id + ".prefab");
         deviceModel.Object = prefab;
         deviceModel.id = Id;
-        mainScreen.SetTitle(Name);
         model = GameObject.Instantiate(deviceModel.Object);
         model.layer = 13;
         foreach(Transform child in model.GetComponentInChildren<Transform>())

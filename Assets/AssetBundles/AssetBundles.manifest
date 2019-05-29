@@ -1,14 +1,10 @@
 ManifestFileVersion: 0
-CRC: 2072728188
+CRC: 2812332556
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: test.unity3d
-      Dependencies:
-        Dependency_0: 31-02-01-002-003-004-008.unity3d
+      Name: 31-02-09-101-001-002-035.unity3d
+      Dependencies: {}
     Info_1:
       Name: 31-02-01-002-003-004-008.unity3d
-      Dependencies: {}
-    Info_2:
-      Name: 31-02-09-101-001-002-035.unity3d
       Dependencies: {}

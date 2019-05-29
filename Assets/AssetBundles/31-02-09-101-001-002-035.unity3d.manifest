@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3308017743
+CRC: 1999666212
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 973dcd5b5a2d883d858135c462ed5ea0
+    Hash: cef43c1e250d2081f3342410c5fb961e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8a6252d8d41bca46e5bd71d19c639df7
+    Hash: 5c33708c8cd01495830b5e2f282bca17
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -34,5 +34,4 @@ ClassTypes:
 Assets:
 - Assets/Prefabs/31-02-09-101-001-002-035.prefab
 - Assets/Prefabs/31-02-09-101-001-002-035.controller
-- Assets/Prefabs/31-02-09-101-001-002-035.FBX
 Dependencies: []
