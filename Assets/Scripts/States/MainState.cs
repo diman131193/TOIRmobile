@@ -42,7 +42,7 @@ public class MainState : BaseState {
             mainScreen.ButtonInstrument.interactable = false;
             mainScreen.ButtonClock.interactable = false;
             Instantiate();
-            mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
+            mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Перемещать</b> тремя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
             mainScreen.GetComponent<ModelRotation>().Model = model.transform;
             mainScreen.GetComponent<Zoom>().Model = model.transform;
             mainScreen.GetComponent<Zoom>().zMin = model.transform.position.z - 5.0f;
@@ -109,7 +109,6 @@ public class MainState : BaseState {
 
     public void ButtonDownClicked()
     {
-        ///Todo hardcode. Hardcode comleted; 
         var currentState = animator.GetInteger("state");
         mainScreen.ButtonUp.interactable = true;
         currentState--;
@@ -135,7 +134,7 @@ public class MainState : BaseState {
             mainScreen.ButtonSettings.interactable = false;
             mainScreen.ButtonInstrument.interactable = false;
             mainScreen.ButtonClock.interactable = false;
-            mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
+            mainScreen.Description.text = "<b>Крутить</b> с помощью джойстиков. <b>Приближать</b> двумя пальцами. <b>Перемещать</b> тремя пальцами. <b>Детальный разбор</b> по стрелочкам слева. Для получения подробной инструкции нажмите слева соответственно на: <b>Описание</b>, <b>Инструмены</b> ,<b>Время</b>.";
             mainScreen.ButtonDown.interactable = false;
         }
     }
@@ -183,15 +182,13 @@ public class MainState : BaseState {
 
     IEnumerator WaitForAnim(int currstate)
     {
-        Debug.Log(currstate);
-
         yield return new WaitForSeconds(1);
         while (animator.GetCurrentAnimatorStateInfo(currstate).IsName(currstate.ToString()) && animator.GetCurrentAnimatorStateInfo(currstate).normalizedTime < 1.0f)
         {
-            Debug.Log("Wait...");
+            //Debug.Log("Wait...");
             yield return null;
         }
-        Debug.Log("Done Playing");
+        //Debug.Log("Done Playing");
         if (currstate == instruction.Length) mainScreen.ButtonUp.interactable = false;
         else mainScreen.ButtonUp.interactable = true;
     }
