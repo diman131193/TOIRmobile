@@ -16,7 +16,9 @@ public class MainState : BaseState {
 
     private GameObject model;
     private Animator animator;
-    
+
+    private AnimatorClipInfo[] animatorClipInfo;
+
     private DeviceModel deviceModel = new DeviceModel();
 
     private InstructionModel[] instruction;
@@ -80,8 +82,10 @@ public class MainState : BaseState {
     public void ButtonUpClicked()
     {
         var currentState = animator.GetInteger("state");
-        mainScreen.ButtonDown.interactable = true;
         currentState++;
+        mainScreen.ButtonDown.interactable = true;
+        
+
         string description = "";
    
         if (currentState <= instruction.Length)
@@ -97,10 +101,10 @@ public class MainState : BaseState {
             mainScreen.ButtonClock.interactable = true;
             mainScreen.Description.text = "<b><size=30>Описание:</size></b>\n" + instruction[currentState - 1].LONG_DESCRIPTION;
         }
-        if (currentState == instruction.Length)
-        {
-            mainScreen.ButtonUp.interactable = false;
-        }
+        mainScreen.ButtonUp.interactable = false;
+        //animatorClipInfo = animator.GetCurrentAnimatorClipInfo(currentState);
+        //Debug.Log(animatorClipInfo[0].clip.name);
+        mainScreen.StartCoroutine(WaitForAnim(currentState));
     }
 
     public void ButtonDownClicked()
@@ -176,4 +180,20 @@ public class MainState : BaseState {
         }
         animator = model.GetComponentInChildren<Animator>();
     }
+
+    IEnumerator WaitForAnim(int currstate)
+    {
+        Debug.Log(currstate);
+
+        yield return new WaitForSeconds(1);
+        while (animator.GetCurrentAnimatorStateInfo(currstate).IsName(currstate.ToString()) && animator.GetCurrentAnimatorStateInfo(currstate).normalizedTime < 1.0f)
+        {
+            Debug.Log("Wait...");
+            yield return null;
+        }
+        Debug.Log("Done Playing");
+        if (currstate == instruction.Length) mainScreen.ButtonUp.interactable = false;
+        else mainScreen.ButtonUp.interactable = true;
+    }
+
 }
